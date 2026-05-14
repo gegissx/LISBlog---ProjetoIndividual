@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+
+    <!-- fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <!-- NavBar-->
+    <header>
+      <nav class="navBar">
+        <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
+        <div class="menu">
+          <a href="#">Posts</a>
+          <a href="./dashboard.html">Dashboard</a>
+        </div>
+        <div class="botoes">
+          <p>Olá ${nome}</p>
+        </div>
+      </nav>
+    </header>
+
+    <div class="titulo">
+      <h1>Essa é sua Dashboard,</h1>
+      <h3>Aqui está um resumo da sua história até agora!</h3>
+    </div>
+
+    <div class="container">
+      <!-- KPIS -->
+      <div class="kpis">
+        <div class="kpi">
+          <img src="./assets/imgs/dashLapis.png" />
+          <div>
+            <h3>Posts Publicados</h3>
+            <div class="info">
+              <span>24</span>
+              <p>capítulos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi">
+          <img src="./assets/imgs/dashBalao.png" />
+          <div>
+            <h3>Comentários recebidos</h3>
+            <div class="info">
+              <span>56</span>
+              <p>comentários</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi">
+          <img src="./assets/imgs/dashCoracao.png" />
+          <div>
+            <h3>Curtidas recebidas</h3>
+            <div class="info">
+              <span>103</span>
+              <p>curtidas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi">
+          <img src="./assets/imgs/dashPapel.png" />
+          <div>
+            <h3>Memórias salvas</h3>
+            <div class="info">
+              <span>8</span>
+              <p>memórias</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÁFICOS -->
+      <div class="graficos">
+        <div class="grafico1">
+          <h2>Posts ao longo do tempo</h2>
+          <canvas id="graficoLinha"></canvas>
+        </div>
+
+        <div class="grafico2">
+          <h2>Emoções mais frequentes</h2>
+          <canvas id="graficoPizza"></canvas>
+        </div>
+
+        <div class="grafico3">
+          <h2>Meta de escrita</h2>
+          <canvas id=""></canvas>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // GRÁFICO DA LINHA DO TEMPO
+
+    const labels = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+    ];
+
+    const Grafico_LinhaDoTempo = {
+      labels: labels,
+      datasets: [
+        {
+          fill: true,
+          label: "Posts por mês",
+          backgroundColor: "rgba(163, 177, 255, 0.208)",
+          pointBackgroundColor: "rgb(163, 177, 255)",
+          borderColor: "rgb(163, 177, 255)",
+          data: [22, 24, 27, 23, 20, 18],
+          borderWidth: 1,
+        },
+      ],
+    };
+    const config = {
+      type: "line",
+      data: Grafico_LinhaDoTempo,
+      scales: {
+        grid: {
+          display: false,
+        },
+      },
+    };
+  </script>
+
+  <script>
+    // GRÁFICO DA FREQUÊNCIA DE EMOÇÕES
+
+    const valores = [30, 60, 28, 25, 22, 23, 40];
+
+    const labels2 = [
+      "Ansiedade",
+      "Tristeza",
+      "Raiva",
+      "Alegria",
+      "Serenidade",
+      "Gratidão",
+      "Esperança",
+    ];
+
+    // Colocando porcentagem na legenda
+
+    let soma = 0;
+
+    for (let index = 0; index < valores.length; index++) {
+      soma += valores[index];
+    }
+
+    let labels_legenda = [];
+
+    for (let index = 0; index < labels2.length; index++) {
+      let porcentagem = ((valores[index] / soma) * 100).toFixed(1);
+
+      labels_legenda.push(labels2[index] + " - " + porcentagem + "%");
+    }
+
+    const grafico_Frequencia = {
+      labels: labels_legenda,
+      datasets: [
+        {
+          label: "Sentimentos",
+          backgroundColor: [
+            "rgb(214, 168, 106)",
+            "rgb(123, 145, 196)",
+            "rgb(196, 112, 112)",
+            "rgb(230, 210, 120)",
+            "rgb(186, 201, 250)",
+            "rgb(156, 170, 108)",
+            "rgb(121, 179, 140)",
+          ],
+          data: [30, 60, 28, 25, 22, 23, 40],
+          borderWidth: 1,
+        },
+      ],
+    };
+    const config2 = {
+      type: "doughnut",
+      data: grafico_Frequencia,
+
+      options: {
+        cutout: "50%",
+
+        plugins: {
+          legend: {
+            position: "right",
+            labels: {
+              usePointStyle: true,
+              pointStyle: "circle",
+              padding: 20,
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <script>
+    // CRIAÇÃO DOS GRÁFICOS
+
+    const LinhaDoTempo = new Chart(
+      document.getElementById("graficoLinha"),
+      config,
+    );
+
+    const Frequencia = new Chart(
+      document.getElementById("graficoPizza"),
+      config2,
+    );
+  </script>
+</html>

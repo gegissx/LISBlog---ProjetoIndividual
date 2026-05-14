@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/cadastro.css" />
+
+    <title>Cadastro - LISBlog</title>
+
+    <!-- fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="corpo">
+      <!-- parte do cadastro -->
+      <div class="container">
+        <header>
+          <nav class="navBar">
+            <img class="logo" src="./assets/imgs/Logo.png" />
+            <div class="menu">
+              <a href="./index.html">Home</a>
+              <a href="#">Posts</a>
+              <a href="./sobre.html">Sobre</a>
+            </div>
+          </nav>
+        </header>
+
+        <div class="area-cadastro">
+          <h1>Criar Conta</h1>
+          <h3>𖦹 Essa ação terá consequências</h3>
+
+          <div class="inputs">
+            <p>Nome completo<span id="erroNome"></span></p>
+            <input
+              type="text"
+              id="ipt_nome"
+              placeholder="𖨆  Insira seu nome completo"
+            />
+            <p>Nickname<span id="erroNick"></span></p>
+            <input
+              type="text"
+              id="ipt_NickName"
+              placeholder="🜲  Insira seu Nickname"
+            />
+            <p>E-mail<span id="erroEmail"></span></p>
+            <input
+              type="text"
+              id="ipt_email"
+              placeholder="✉ Insira seu e-mail"
+            />
+            <p>Senha<span id="erroSenha"></span></p>
+            <input
+              type="text"
+              id="ipt_senha"
+              placeholder="🔒︎ Insira sua senha"
+            />
+          </div>
+          <button class="botao" onclick="cadastrar()">Criar conta</button>
+        </div>
+        <div id="texto"></div>
+      </div>
+
+      <!-- parte da imagem -->
+      <div class="lado-imagem">
+        <div class="botoes">
+          <p>Já tem uma conta?</p>
+          <a href="./login.html" class="cadastro">Faça seu login</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let ListaNickname = ["teste"];
+  let ListaEmail = ["teste"];
+
+  function cadastrar() {
+    var nomeVar = ipt_nome.value;
+    var nicknameVar = ipt_NickName.value;
+    var emailVar = ipt_email.value;
+    var senhaVar = ipt_senha.value;
+
+    // Verificação nome
+
+    if ((nomeVar == ``)) {
+      erroNome.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe seu nome</span>`;
+    } else {
+      erroNome.innerHTML = ``;
+    }
+
+    // Verificação Nickname
+
+    if (nicknameVar == ``) {
+      erroNick.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe um Nickname</span>`;
+    } else {
+      erroNick.innerHTML = ``;
+
+      for (let index = 0; index < ListaNickname.length; index++) {
+        if (ListaNickname[index] == nicknameVar) {
+          texto.innerHTML = `Este nick já está sendo utilizado`;
+        } else {
+          ListaNickname.push(nicknameVar);
+        }
+      }
+    }
+
+    // Verificação Email
+
+    if (emailVar == `` || !emailVar.includes("@")) {
+      erroEmail.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe um E-mail válido</span>`;
+    } else {
+      erroEmail.innerHTML = ``;
+
+      for (let index = 0; index < ListaEmail.length; index++) {
+        if (ListaEmail[index] == emailVar) {
+          texto.innerHTML = `Este e-mail já está sendo utilizado`;
+        } else {
+          ListaEmail.push(emailVar);
+        }
+      }
+    }
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        nicknameServer: nicknameVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+</script>

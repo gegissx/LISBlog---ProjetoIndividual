@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>Login - LisBlog</title>
+
+    <!-- fontes-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+
+  <body>
+    <div class="corpo">
+
+
+      <!-- parte do login -->
+      <div class="container">
+        <header>
+          <nav class="navBar">
+            <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
+            <div class="menu">
+              <a href="./index.html">Home</a>
+              <a href="#">Posts</a>
+              <a href="./sobre.html">Sobre</a>
+            </div>
+          </nav>
+        </header>
+
+         <div class="area-cadastro">
+          <h1>Bem-Vindo de volta!</h1>
+          <h3>Continue sua jornada preenchendo as informações abaixo</h3>
+
+          <div class="inputs">
+            <p>E-mail<span id="erroEmail"></span></p>
+            <input
+              type="text"
+              id="ipt_email"
+              placeholder="✉ Insira seu e-mail"
+            />
+            <p>Senha<span id="erroSenha"></span></p>
+            <input
+              type="password"
+              id="ipt_senha"
+              placeholder="🔒︎ Insira sua senha"
+            />
+          </div>
+          <button class="botao" onclick="entrar()">Entrar</button>
+        </div>
+        <div id="texto"></div>
+      </div>
+
+      <!-- parte da imagem -->
+      <div class="lado-imagem">
+        <div class="botoes">
+          <p>Ainda não está cadastrado?</p>
+          <a href="./cadastro.html" class="cadastro">Crie sua conta</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+<script>
+
+  function entrar() {
+
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

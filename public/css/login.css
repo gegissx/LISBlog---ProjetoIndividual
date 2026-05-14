@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F5F0E7;
+  font-family: "Zen Loop", cursive;
+  color: #331100;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+
+.corpo {
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5F0E7;
+}
+
+/* header */
+header {
+  background-color: #F5F0E7;
+  padding: 20px 30px;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo{
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+ text-decoration: none;
+  color: #331100;
+  font-size: 22px
+}
+
+
+/* Área do login */
+.area-cadastro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 60px;
+  margin-left: 50px;
+}
+
+.area-cadastro h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.area-cadastro h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #709897;
+  margin-bottom: 40px;
+}
+
+/* Inputs */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.inputs p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.inputs input {
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #FAF8F5;
+  font-family: "Zen Loop", cursive;
+  font-size: 18px;
+  color: #667;
+}
+
+/* Botão */
+
+.botao {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #709897;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: "Zen Loop", cursive;
+  padding: 14px 40px;
+  cursor: pointer;
+  max-width: 400px;
+  width: 100%;
+}
+
+.botao:hover {
+  background-color: #5a7f7e;
+}
+
+/* lado da imagem */
+.lado-imagem {
+  width: 50%;
+  height: 100vh;
+  background: url("../assets/imgs/max_polaroids.jpeg") center no-repeat;
+  background-size: cover;
+}
+
+/* Botões sobre a imagem */
+.botoes {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 20px 30px;
+  gap: 15px;
+}
+
+.botoes p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.botoes .cadastro {
+  background-color: #4a3728;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}

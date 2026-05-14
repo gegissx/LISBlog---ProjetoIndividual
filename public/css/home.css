@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f0e7;
+  font-family: "Zen Loop", cursive;
+  color: #331100;
+}
+
+/* header */
+header {
+  background-color: #F5F0E7;
+  padding: 20px 30px;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo{
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+ text-decoration: none;
+  color: #331100;
+  font-size: 22px
+}
+
+/* botões do login e cadastro */
+.botoes {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.botoes p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.botoes a{
+  text-decoration: none;
+  color: #331100;
+  font-size: 22px
+}
+
+.botoes .cadastro {
+  background-color: #4a3728;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+/* inicio */
+.inicio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 350px;
+  padding: 60px 190px;
+}
+
+.inicio-texto{
+  width: 450px;
+}
+
+.inicio-texto h1 {
+  font-size: 75px;
+}
+
+.inicio-texto p {
+  font-size: 30px;
+}
+
+.inicio-img img {
+  width: 300px;
+  transform: rotate(-5deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-right: 50px;
+  
+}
+
+/* Funcionalidades */
+
+.funcionalidades{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  background-color: #5a7f7e6a;
+  height: 250px;
+  padding: 0px 190px; 
+}
+
+.funcionalidades img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 70px;
+  margin-bottom: 15px;
+}
+
+.funcionalidades h1{
+  margin-top: 30px;
+}
+
+.funcionalidades h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.funcionalidades p {
+  font-size: 17px;
+  text-align: center;
+}
+
+.icones {
+  display: flex;
+  justify-content: center;
+}
+
+.icones2 {
+  display: flex;
+  justify-content: center;
+  margin-right: 17px;
+}
+
+.divisor {
+  background-color: #331100;
+  width: 150px;
+  height: 1px;
+  border-top: 1px dashed #e7e2d9;
+  align-self: center;
+}
+
+.alinhamento {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  box-sizing: border-box;
+}

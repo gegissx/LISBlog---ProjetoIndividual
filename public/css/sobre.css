@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f0e7;
+  font-family: "Zen Loop", cursive;
+  color: #331100;
+}
+
+/* header */
+header {
+  background-color: #F5F0E7;
+  padding: 20px 30px;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo{
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+ text-decoration: none;
+  color: #331100;
+  font-size: 22px
+}
+
+/* botões do login e cadastro */
+.botoes {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.botoes p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.botoes a{
+  text-decoration: none;
+  color: #331100;
+  font-size: 22px
+}
+
+.botoes .cadastro {
+  background-color: #4a3728;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* inicio */
+.inicio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+}
+
+.inicio-texto h1 {
+  margin-left: 40px;
+  font-size: 80px;
+}
+
+.inicio-texto p {
+  margin-left: 40px;
+  font-size: 40px;
+}
+
+.inicio-img img {
+  width: 250px;
+  transform: rotate(-5deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-right: 100px;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #e7e2d9;
+  height: 200px;
+  padding: 0 20px 20px 20px;
+  flex: 1;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  display: flex;
+  justify-content: center;
+  align-items: row;
+  width: 200px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-left: 100px;
+  border-radius: 20px;
+}
+
+.card h1 {
+  font-size: 30px;
+}
+
+.card p {
+  font-size: 22px;
+  border-radius: 30px;
+}
+
+.card1{
+  background-color: #A8D0D6;
+}
+
+.card2 {
+  padding-top: 10px;
+}
+
+.card3{
+  height: 800px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  margin-right: 40px;
+
+}
+
+.titulo {
+  margin-top: 30px;
+  align-self: center;
+}
