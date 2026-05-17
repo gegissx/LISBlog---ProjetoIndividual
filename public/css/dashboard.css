@@ -66,25 +66,33 @@ header {
   font-size: 14px;
 }
 
+.topo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 140px 0px 153px;
+}
+
+.topo img {
+    height: 160px;
+}
+
+
 .titulo{
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    margin-top: 30px;
-    margin-bottom: -50px;
-    margin-left: 150px;
-    font-size: 30px;
+    justify-content: center;
+    font-size: 25px;
     gap: 10px;
 }
 
 .titulo h3{
-    color: #5a7f7e6a;
+    color: rgba(49, 62, 135, 0.621);
     font-weight: bold;
 }
 
 .container {
-    margin-top: 30px;
-    padding: 80px 150px;
+    padding: 10px 150px;
 }
 
 /* KPIS */
@@ -92,7 +100,7 @@ header {
 .kpis {
     display: flex;
     flex-direction: row;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     justify-self: start;
     gap: 20px;
     align-items: end;
@@ -107,13 +115,13 @@ header {
     flex-direction: row;
     gap: 40px;
     height: 150px;
-    width: 300px;
+    width: 290px;
 }
 
 .kpi h3 {
     font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 25px;
 }
 
 .kpi span {
@@ -124,6 +132,24 @@ header {
 .kpi p {
     font-size: 20px;
     margin-bottom: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.cor1{
+    color:#d3b0f4;
+}
+
+.cor2{
+    color: #fae3af
+}
+
+.cor3{
+    color: #f7a99a
+}
+
+.cor4{
+    color: #95cce8
 }
 
 .kpi img{
@@ -135,7 +161,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: end;
-    justify-self: end;
+    justify-self: center;
     gap: 5px;
 }
 
@@ -144,25 +170,31 @@ header {
 .graficos {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: space-between;
 }
 
 .graficos h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 35px;
 }
 
 .grafico1 {
-    width: 300px;
-    height: 400px;
+    width: 800px;
+    height: 410px;
     background-color: #fffaf5;
     padding: 25px;
     border-radius: 15px;
     border: solid 0.1px rgba(51, 17, 0, 0.223);
+}
 
+.configGrafico1 {
+    width: 750px;
+    height: 300px;
 }
 
 .grafico2 {
+    width: 400px;
+    height: 410px;
     background-color: #fffaf5;
     padding: 25px;
     border-radius: 25px;
@@ -170,6 +202,8 @@ header {
 }
 
 .grafico3 {
+    width: 400px;
+    height: 400px;
     background-color: #fffaf5;
     padding: 25px;
     border-radius: 25px;

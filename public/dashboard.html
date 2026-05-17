@@ -30,21 +30,31 @@
       </nav>
     </header>
 
+    <div class="topo">
+
     <div class="titulo">
       <h1>Essa é sua Dashboard,</h1>
       <h3>Aqui está um resumo da sua história até agora!</h3>
     </div>
 
+    <img src="./assets/imgs/desenhoFarol.png">
+
+    </div>
+
+   
+
     <div class="container">
+
       <!-- KPIS -->
       <div class="kpis">
+
         <div class="kpi">
           <img src="./assets/imgs/dashLapis.png" />
           <div>
             <h3>Posts Publicados</h3>
             <div class="info">
               <span>24</span>
-              <p>capítulos</p>
+              <p class="cor1">capítulos</p>
             </div>
           </div>
         </div>
@@ -55,7 +65,7 @@
             <h3>Comentários recebidos</h3>
             <div class="info">
               <span>56</span>
-              <p>comentários</p>
+              <p class="cor2">comentários</p>
             </div>
           </div>
         </div>
@@ -66,7 +76,7 @@
             <h3>Curtidas recebidas</h3>
             <div class="info">
               <span>103</span>
-              <p>curtidas</p>
+              <p class="cor3">curtidas</p>
             </div>
           </div>
         </div>
@@ -77,7 +87,7 @@
             <h3>Memórias salvas</h3>
             <div class="info">
               <span>8</span>
-              <p>memórias</p>
+              <p class="cor4">memórias</p>
             </div>
           </div>
         </div>
@@ -87,7 +97,10 @@
       <div class="graficos">
         <div class="grafico1">
           <h2>Posts ao longo do tempo</h2>
-          <canvas id="graficoLinha"></canvas>
+          <div class="configGrafico1">
+            <canvas id="graficoLinha"></canvas>
+          </div>
+          
         </div>
 
         <div class="grafico2">
@@ -95,10 +108,10 @@
           <canvas id="graficoPizza"></canvas>
         </div>
 
-        <div class="grafico3">
+        <!--<div class="grafico3">
           <h2>Meta de escrita</h2>
           <canvas id=""></canvas>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
@@ -127,21 +140,50 @@
           backgroundColor: "rgba(163, 177, 255, 0.208)",
           pointBackgroundColor: "rgb(163, 177, 255)",
           borderColor: "rgb(163, 177, 255)",
-          data: [22, 24, 27, 23, 20, 18],
+          data: [22, 24, 27, 23, 20, 18, 22, 24, 27, 23, 20, 18],
           borderWidth: 1,
         },
       ],
     };
+
+
     const config = {
-      type: "line",
-      data: Grafico_LinhaDoTempo,
-      scales: {
+  type: 'line',
+  data: Grafico_LinhaDoTempo,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    scales: {
+      x: {
         grid: {
-          display: false,
+          display: false 
         },
+        ticks: {
+          maxRotation: 0,
+          autoSkip: false,
+        }
       },
-    };
+      y: {
+        grid: {
+          drawTicks: false
+        },
+      }
+    },
+    elements: {
+      point: {
+        radius: 2.5,
+      }
+    }
+  }
+};
   </script>
+
+
 
   <script>
     // GRÁFICO DA FREQUÊNCIA DE EMOÇÕES
@@ -213,6 +255,8 @@
       },
     };
   </script>
+
+
 
   <script>
     // CRIAÇÃO DOS GRÁFICOS
