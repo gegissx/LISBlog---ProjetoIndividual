@@ -128,7 +128,6 @@ header {
   background-size: cover;
 }
 
-/* Botões sobre a imagem */
 .botoes {
   display: flex;
   align-items: center;

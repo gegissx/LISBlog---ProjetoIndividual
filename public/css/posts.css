@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f0e7;
+  font-family: "Zen Loop", cursive;
+  color: #331100;
+}
+
+/* header */
+header {
+  background-color: #f5f0e7;
+  padding: 20px 30px;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #331100;
+  font-size: 22px;
+}
+
+/* botões do login e cadastro */
+.botoes {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.botoes p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.botoes a {
+  text-decoration: none;
+  color: #331100;
+  font-size: 22px;
+}
+
+.botoes .cadastro {
+  background-color: #4a3728;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/*Área das postagens*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.container input {
+  width: 600px;
+}
+
+.titulo {
+  justify-content: start;
+  justify-self: start;
+  align-self: start;
+  font-size: 20px;
+}
+
+.titulo p {
+    font-size: 25px;
+}
+
+.postagem {
+  background-color: #f5f0e7;
+  width: 750px;
+  height: 180px;
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid #9a948e;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.postagem button {
+  background-color: #709897;
+  color: #f5f0e7;
+  border: none;
+  font-family: "Zen Loop", cursive;
+  margin-top: auto;
+  width: 50px;
+  align-self: end;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.postagem input {
+  white-space: nowrap;
+  border: none;
+  background-color: #f5f0e7;
+}
+
+.postagem input:focus {
+  outline: none;
+}
