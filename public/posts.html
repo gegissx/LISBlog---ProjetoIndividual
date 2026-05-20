@@ -40,11 +40,36 @@
     </div> <br>
 
     <div class="postagem">
+    <div class="cima">
+        <textarea id="texto_postagem" maxlength="500" placeholder="✎𓂃 Escreva sobre o que você está vivendo..."></textarea>
+        <button onclick="editar()">𖦹</button>
+    </div>
+    <div class="baixo">
 
-        <input type="text" placeholder="✎𓂃 Escreva sobre o que você está vivendo...">  
+        <div style="display: flex; flex-direction: row;">
+        <select id="sentimentos">
+            <option value="0"></option>
+            <option value="1">Ansiedade</option>
+            <option value="2">Tristeza</option>
+            <option value="3">Raiva</option>
+            <option value="4">Alegria</option>
+            <option value="5">Serenidade</option>
+            <option value="6">Gratidão</option>
+            <option value="7">Esperança</option>
+        </select>
 
-        <button onclick="enviar()">Enviar</button>
-        <input type="file" id="ipt_imagem">
+        <input class="Input_imagem" type="file" id="ipt_imagem">
+        <input class="Input_check" type="checkbox" id="ipt_importante">
+
+        <button onclick="enviar()">Enviar ➢</button>
+
+        </div>
+
+        
+    </div>
+         
+
+        
         
         
 

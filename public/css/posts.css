@@ -95,34 +95,109 @@ header {
 .postagem {
   background-color: #f5f0e7;
   width: 750px;
-  height: 180px;
+  height: auto;
   border-radius: 10px;
-  padding: 18px;
+  padding: 25px;
   border: 1px solid #9a948e;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
 }
 
-.postagem button {
+.cima {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cima textarea {
+  border: none;
+  background-color: #f5f0e7;
+  width: 700px;
+  resize: none;
+  overflow-y: auto;
+  field-sizing: content;
+  min-height: 80px;
+  max-height: 300px;
+}
+
+.cima textarea:focus {
+  outline: none;
+}
+
+.cima button{
+  border-radius: 50%;
+  border: none;
+  background-color: #f5f0e7;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  color: #331100 ;
+  margin-top: -30px;
+  margin-right: -30px;
+}
+
+.baixo button{
   background-color: #709897;
   color: #f5f0e7;
   border: none;
   font-family: "Zen Loop", cursive;
   margin-top: auto;
-  width: 50px;
+  width: 80px;
   align-self: end;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bolder;
   padding: 5px;
   border-radius: 8px;
 }
 
-.postagem input {
-  white-space: nowrap;
-  border: none;
-  background-color: #f5f0e7;
+.baixo {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.postagem input:focus {
+.baixo select{
+  appearance: none;
+  background-image: url(../assets/imgs/sorriso_postagem.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: none;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.Input_imagem {
+  color: transparent;
+  pointer-events: none;
+}
+
+.Input_imagem::file-selector-button{
+  background-image: url(../assets/imgs/camera_postagem.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: transparent;
+  cursor: pointer;  
+  width: 45px;
+  height: 45px;
+  pointer-events: auto;
+}
+
+.Input_check{
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
   outline: none;
+  cursor: pointer;
+
 }
