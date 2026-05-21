@@ -15,39 +15,39 @@
 <body>
 
   <!-- NavBar-->
-  <header>
-  <nav class="navBar">
+    <nav class="navBar">
+
     <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
+
     <div class="menu">
-      <a href="./index.html">Home</a>
-      <a href="#">Posts</a>
-      <a href="./sobre.html">Sobre</a>
+      <a href="#">⌂ Feed</a>
+      <a href="#">🖹 Meus posts</a>
+      <a href="#">♡ Minhas memorias</a>
+      <a href="#">✎ Perfil</a>
+      <span><a href="#">➜] Sair</a></span>
     </div>
-    <div class="botoes">
-        <a href="login.html">Login</a>
-      <a href="./cadastro.html" class="cadastro">Crie sua conta</a>
-    </div>
+
+
   </nav>
-</header>
 
  <!--Aréa das postagens-->
 
  <div class="container">
 
     <div class="titulo">
-    <h1>Que bom te ver por aqui!</h1>
+    <h1>Que bom te ver por aqui, ${nome}</h1>
     <p>O que você vai escrever hoje?</p>
     </div> <br>
 
     <div class="postagem">
+
     <div class="cima">
         <textarea id="texto_postagem" maxlength="500" placeholder="✎𓂃 Escreva sobre o que você está vivendo..."></textarea>
         <button onclick="editar()">𖦹</button>
     </div>
-    <div class="baixo">
 
-        <div style="display: flex; flex-direction: row;">
-        <select id="sentimentos">
+    <div class="baixo">
+          <span><select id="sentimentos">
             <option value="0"></option>
             <option value="1">Ansiedade</option>
             <option value="2">Tristeza</option>
@@ -56,26 +56,96 @@
             <option value="5">Serenidade</option>
             <option value="6">Gratidão</option>
             <option value="7">Esperança</option>
-        </select>
+        </select>Escolher sentimento</span>
+        
 
-        <input class="Input_imagem" type="file" id="ipt_imagem">
-        <input class="Input_check" type="checkbox" id="ipt_importante">
+        <span><input class="Input_imagem" type="file" id="ipt_imagem">Adicionar imagem</span>
 
-        <button onclick="enviar()">Enviar ➢</button>
+        <div class="Input_check">
+          <input type="checkbox" id="ipt_importante">
+           <span>Memória importante</span>
+          </div>
 
+          <button onclick="enviar()">Enviar ➢</button>
+
+        
+    </div>
+    </div>
+ 
+
+<!-- FEED -->
+
+    <div class="feed">
+
+      <div class="post">
+        <div class="usuario">
+          <img src="../public/assets/imgs/FotosPerfil/Max1.jpg">
+          <div>
+            <h3>nome1</h3>
+            <span>dia, horario</span>
+          </div>
         </div>
 
-        
+        <p>
+          texto texto texto texto texto texto texto texto texto texto
+        </p>
+
+        <img class="imagem_post" src="./assets/imgs/farol.jpeg">
+
+        <div class="interacao">
+          <button><span>♡ 12</span></button>
+          <button><span>💬 3</span></button>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="usuario">
+          <img src="../public/assets/imgs/FotosPerfil/Max2.jpg">
+          <div>
+            <h3>nome2</h3>
+            <span>dia, horario</span>
+          </div>
+        </div>
+
+        <p>
+          texto texto texto texto texto texto texto texto texto texto
+        </p>
+
+        <img class="imagem_post" src="./assets/imgs/max_polaroids.jpeg">
+
+        <div class="interacao">
+          <button><span>♡ 12</span></button>
+          <button><span>💬 3</span></button>
+        </div>
+      </div>
+
+
+      <div class="post">
+        <div class="usuario">
+          <img src="../public/assets/imgs/FotosPerfil/Max3.jpg">
+          <div>
+            <h3>nome3</h3>
+            <span>dia, horario</span>
+          </div>
+        </div>
+
+        <p>
+          texto texto texto texto texto texto texto texto texto texto
+        </p>
+
+        <img class="imagem_post" src="./assets/imgs/chloe_carro.jpeg">
+
+        <div class="interacao">
+          <button><span>♡ 12</span></button>
+          <button><span>💬 3</span></button>
+        </div>
+      </div>
+
+
     </div>
-         
 
-        
-        
-        
-
-    </div>
-
- </div>
+  </div>
+  </div>
 
 </body>
 
