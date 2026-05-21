@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/posts.css" />
+  <link rel="stylesheet" href="./css/meus_posts.css" />
 
   <!-- fontes-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,7 +15,7 @@
 <body>
 
   <!-- NavBar-->
-    <nav class="navBar">
+  <nav class="navBar">
 
     <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
 
@@ -27,62 +27,40 @@
       <span><a href="#">➜] Sair</a></span>
     </div>
 
-
   </nav>
 
- <!--Aréa das postagens-->
+  <!-- Área meus posts -->
 
- <div class="container">
+  <div class="container">
 
     <div class="titulo">
-    <h1>Que bom te ver por aqui, ${nome}</h1>
-    <p>O que você vai escrever hoje?</p>
-    </div> <br>
-
-    <div class="postagem">
-
-    <div class="cima">
-        <textarea id="texto_postagem" maxlength="500" placeholder="✎𓂃 Escreva sobre o que você está vivendo..."></textarea>
+      <h1>Meus posts</h1>
+      <p>Tudo que você já escreveu por aqui ✎</p>
     </div>
 
-    <div class="baixo">
-          <span><select id="sentimentos">
-            <option value="0"></option>
-            <option value="1">Ansiedade</option>
-            <option value="2">Tristeza</option>
-            <option value="3">Raiva</option>
-            <option value="4">Alegria</option>
-            <option value="5">Serenidade</option>
-            <option value="6">Gratidão</option>
-            <option value="7">Esperança</option>
-        </select>Escolher sentimento</span>
-        
-
-        <span><input class="Input_imagem" type="file" id="ipt_imagem">Adicionar imagem</span>
-
-        <div class="Input_check">
-          <input type="checkbox" id="ipt_importante">
-           <span>Memória importante</span>
-          </div>
-
-          <button onclick="enviar()">Enviar ➢</button>
-
-        
+    <div class="filtros">
+      <button class="botao_filtro botao_selecionado" onclick="filtrar()">Todos</button>
+      <button class="botao_filtro" onclick="filtrar()">Alegria</button>
+      <button class="botao_filtro" onclick="filtrar()">Tristeza</button>
+      <button class="botao_filtro" onclick="filtrar()">Ansiedade</button>
+      <button class="botao_filtro" onclick="filtrar()">Raiva</button>
+      <button class="botao_filtro" onclick="filtrar()">Serenidade</button>
+      <button class="botao_filtro" onclick="filtrar()">Gratidão</button>
+      <button class="botao_filtro" onclick="filtrar()">Esperança</button>
     </div>
-    </div>
- 
 
-<!-- FEED -->
+    <!-- Feed -->
 
-    <div class="feed">
+    <div class="feed" id="meus_posts_feed">
 
       <div class="post">
         <div class="usuario">
-          <img src="../public/assets/imgs/FotosPerfil/Max1.jpg">
+          <img src="./assets/imgs/FotosPerfil/Max1.jpg">
           <div>
-            <h3>nome1</h3>
-            <span>dia, horario</span>
+            <h3>${nome}</h3>
+            <span>12 de junho, 14:30</span>
           </div>
+          <button onclick="editar()">𖦹</button>
         </div>
 
         <p>
@@ -94,15 +72,16 @@
         <div class="interacao">
           <button><span>♡ 12</span></button>
           <button><span>💬 3</span></button>
+          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
         </div>
       </div>
 
       <div class="post">
         <div class="usuario">
-          <img src="../public/assets/imgs/FotosPerfil/Max2.jpg">
+          <img src="./assets/imgs/FotosPerfil/Max2.jpg">
           <div>
-            <h3>nome2</h3>
-            <span>dia, horario</span>
+            <h3>${nome}</h3>
+            <span>8 de junho, 09:15</span>
           </div>
         </div>
 
@@ -113,18 +92,18 @@
         <img class="imagem_post" src="./assets/imgs/max_polaroids.jpeg">
 
         <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
+          <button><span>♡ 5</span></button>
+          <button><span>💬 1</span></button>
+          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
         </div>
       </div>
 
-
       <div class="post">
         <div class="usuario">
-          <img src="../public/assets/imgs/FotosPerfil/Max3.jpg">
+          <img src="./assets/imgs/FotosPerfil/Max3.jpg">
           <div>
-            <h3>nome3</h3>
-            <span>dia, horario</span>
+            <h3>${nome}</h3>
+            <span>2 de junho, 22:00</span>
           </div>
         </div>
 
@@ -135,15 +114,14 @@
         <img class="imagem_post" src="./assets/imgs/chloe_carro.jpeg">
 
         <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
+          <button><span>♡ 8</span></button>
+          <button><span>💬 2</span></button>
+          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
         </div>
       </div>
 
-
     </div>
 
-  </div>
   </div>
 
 </body>
