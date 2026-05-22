@@ -105,7 +105,7 @@ header {
   justify-content: center;
   gap: 5px;
   align-items: center;
-  background-color: #5a7f7e6a;
+  background-color: #c4cfd0;
   height: 250px;
   padding: 0px 190px; 
 }
@@ -159,4 +159,96 @@ header {
   flex-direction: row;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* exemplo */
+
+.exemplo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  padding: 80px 190px;
+  background-color: #ede7db;
+}
+
+.exemplo_texto {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  justify-content: start;
+  align-items: start;
+  gap: 15px;
+  margin-top: -250px;
+}
+
+.exemplo_texto h1 {
+  font-size: 50px;
+}
+
+.exemplo_texto p {
+  font-size: 22px;
+  color: #5c4a3d;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.exemplo_post {
+  display: flex;
+  justify-content: center;
+}
+
+.exemplo_post img {
+  width: 500px;
+  height: 385px;
+  box-shadow: 4px 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* CTA final */
+
+.final {
+  background-color: #c4cfd0;
+  padding: 90px 190px;
+  display: flex;
+  justify-content: center;
+}
+
+.final_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  max-width: 700px;
+}
+
+.final_container h1 {
+  font-size: 55px;
+  color: #f5f0e7;
+  line-height: 1.1;
+}
+
+.final_container p {
+  font-size: 22px;
+  color: #c9b8aa;
+  line-height: 1.5;
+}
+
+.botao_final {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #709897;
+  color: #f5f0e7;
+  text-decoration: none;
+  font-family: "Zen Loop", cursive;
+  font-size: 24px;
+  padding: 16px 36px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.botao_final:hover {
+  background-color: #709897bf;
 }
