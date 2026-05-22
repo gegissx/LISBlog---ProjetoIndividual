@@ -75,6 +75,7 @@ header {
   justify-content: center;
   gap: 350px;
   padding: 60px 190px;
+  height: 660px;
 }
 
 .inicio-texto{
@@ -90,7 +91,7 @@ header {
 }
 
 .inicio-img img {
-  width: 300px;
+  width: 380px;
   transform: rotate(-5deg);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   margin-right: 50px;
@@ -106,7 +107,7 @@ header {
   gap: 5px;
   align-items: center;
   background-color: #c4cfd0;
-  height: 250px;
+  height: 280px;
   padding: 0px 190px; 
 }
 
@@ -120,7 +121,7 @@ header {
 }
 
 .funcionalidades h1{
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .funcionalidades h2 {
@@ -206,7 +207,7 @@ header {
 }
 
 
-/* CTA final */
+/* final */
 
 .final {
   background-color: #c4cfd0;
@@ -226,13 +227,13 @@ header {
 
 .final_container h1 {
   font-size: 55px;
-  color: #f5f0e7;
+  color: #331100;
   line-height: 1.1;
 }
 
 .final_container p {
   font-size: 22px;
-  color: #c9b8aa;
+  color: #331100a5;
   line-height: 1.5;
 }
 

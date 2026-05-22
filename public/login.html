@@ -47,8 +47,9 @@
             />
           </div>
           <button class="botao" onclick="entrar()">Entrar</button>
+          <div id="texto"></div>
         </div>
-        <div id="texto"></div>
+        
       </div>
 
       <!-- parte da imagem -->
@@ -71,7 +72,7 @@
         var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+           texto.innerHTML = "erro";
             return false;
         }
 
@@ -101,14 +102,10 @@
 
                     setTimeout(function () {
                         window.location = "./dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    }); 
                 });
-
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
