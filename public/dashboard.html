@@ -16,19 +16,29 @@
   </head>
 
   <body>
+
     <!-- NavBar-->
-    <header>
-      <nav class="navBar">
-        <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
-        <div class="menu">
-          <a href="#">Posts</a>
-          <a href="./dashboard.html">Dashboard</a>
+    <nav class="navBar">
+ 
+      <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
+ 
+      <div class="menu">
+        <a href="../public/posts.html">⌂ Feed</a>
+        <a href="../public/meus_posts.html">🖹 Meus posts</a>
+        <a href="#">♡ Minhas memorias</a>
+        <a href="../public/dashboard.html">✎ Resumo</a>
+        <span><a href="#">➜] Sair</a></span>
+      </div>
+      
+      <div class="usuario_perfil">
+        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
+        <div class="usuario_info">
+          <span class="usuario_nome">${nome}</span>
+          <span class="usuario_nick">@${nickname}</span>
         </div>
-        <div class="botoes">
-          <p>Olá ${nome}</p>
-        </div>
-      </nav>
-    </header>
+      </div>
+ 
+    </nav>
 
     <div class="topo">
 
@@ -41,8 +51,7 @@
 
     </div>
 
-   
-
+  
     <div class="container">
 
       <!-- KPIS -->
@@ -112,6 +121,7 @@
           <h2>Meta de escrita</h2>
           <canvas id=""></canvas>
         </div> -->
+        
       </div>
     </div>
   </body>

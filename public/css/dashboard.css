@@ -10,71 +10,93 @@ body {
   color: #331100;
 }
 
-/* header */
-header {
-  background-color: #F5F0E7;
-  padding: 20px 30px;
-  border-bottom: 2px solid rgba(51, 17, 0, 0.09);
-}
-
+/* navbar */
+ 
 .navBar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 280px;
+  background-color: #4d27000b;
+  align-items: start;
   gap: 30px;
+  position: fixed;
+  border-right: 1px solid #d8cec3;
+  padding: 60px 0px 45px 45px;
 }
-
-.logo{
-  height: 40px;
+ 
+.logo {
+  height: 55px;
+  margin-bottom: 25px;
 }
-
+ 
 .menu {
   display: flex;
-  gap: 25px;
+  flex-direction: column;
+  gap: 20px;
 }
-
+ 
 .menu a {
- text-decoration: none;
+  text-decoration: none;
   color: #331100;
-  font-size: 22px
+  font-size: 28px;
+  padding: 12px;
+  border-radius: 10px;
 }
-
-/* botões*/
-.botoes {
+ 
+.menu a:hover {
+  background-color: #dfccb763;
+}
+ 
+.menu span {
+  margin-top: 350px;
+}
+ 
+ 
+.usuario_perfil {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  bottom: 45px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
-
-.botoes p {
-  color: #fff;
-  font-size: 16px;
+ 
+.foto_perfil {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d8cec3;
 }
-
-.botoes a{
-  text-decoration: none;
-  font-size: 22px
+ 
+.usuario_info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
-
-.botoes{
+ 
+.usuario_nome {
+  font-size: 18px;
   color: #331100;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
 }
+ 
+.usuario_nick {
+  font-size: 14px;
+  color: #8c8178;
+}
+
+/*dash*/
 
 .topo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px 140px 0px 153px;
+    padding: 70px 80px 0px 153px;
+    margin-left: 230px;
 }
 
 .topo img {
-    height: 160px;
+    height: 120px;
 }
 
 
@@ -92,8 +114,10 @@ header {
 }
 
 .container {
-    padding: 10px 150px;
+    padding: 30px;
+    margin-left: 350px;
 }
+
 
 /* KPIS */
 
@@ -102,7 +126,7 @@ header {
     flex-direction: row;
     margin-bottom: 25px;
     justify-self: start;
-    gap: 20px;
+    gap: 32px;
     align-items: end;
 }
 
@@ -115,7 +139,7 @@ header {
     flex-direction: row;
     gap: 40px;
     height: 150px;
-    width: 290px;
+    width: 280px;
 }
 
 .kpi h3 {
@@ -170,7 +194,7 @@ header {
 .graficos {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 20px;
 }
 
 .graficos h2 {
