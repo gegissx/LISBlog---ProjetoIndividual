@@ -49,8 +49,36 @@ body {
   background-color: #dfccb763;
 }
 
-.menu span{
-  margin-top: 350px;
+.usuario_perfil {
+  position: absolute;
+  bottom: 45px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.foto_perfil {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d8cec3;
+}
+ 
+.usuario_info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+ 
+.usuario_nome {
+  font-size: 18px;
+  color: #331100;
+}
+ 
+.usuario_nick {
+  font-size: 14px;
+  color: #8c8178;
 }
 
 /*Área das postagens*/
@@ -125,22 +153,17 @@ body {
   margin-bottom: 80px;
 }
 
+.topo_post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
 .usuario {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 20px;
-}
-
-.usuario button{
-  border-radius: 50%;
-  border: none;
-  background-color: #ece4db;
-  width: 45px;
-  height: 45px;
-  font-size: 30px;
-  color: #7f6c5d;
-  cursor: pointer;
 }
 
 .usuario img {
@@ -151,6 +174,14 @@ body {
 
 .usuario span {
   font-size: 22px;
+}
+
+.sentimento {
+  font-size: 20px;
+  color: #7f6c5d;
+  background-color: #ece4db;
+  padding: 6px 14px;
+  border-radius: 20px;
 }
 
 .post p {

@@ -22,10 +22,18 @@
     <div class="menu">
       <a href="../public/posts.html">⌂ Feed</a>
       <a href="../public/meus_posts.html">🖹 Meus posts</a>
-      <a href="#">♡ Minhas memorias</a>
+      <a href="./memorias.html">♡ Minhas memorias</a>
       <a href="../public/dashboard.html">✎ Perfil</a>
-      <span><a href="#">➜] Sair</a></span>
+      <a href="../public/index.html">➜] Sair</a>
     </div>
+
+    <div class="usuario_perfil">
+        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
+        <div class="usuario_info">
+          <span class="usuario_nome">${nome}</span>
+          <span class="usuario_nick">@${nickname}</span>
+        </div>
+      </div>
 
   </nav>
 
@@ -51,16 +59,18 @@
 
     <!-- Feed -->
 
-    <div class="feed" id="meus_posts_feed">
+    <div class="feed">
 
       <div class="post">
+        <div class="topo_post">
         <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max1.jpg">
+          <img src="../public/assets/imgs/FotosPerfil/Max1.jpg">
           <div>
-            <h3>${nome}</h3>
-            <span>12 de junho, 14:30</span>
+            <h3>nome1</h3>
+            <span>dia, horario</span>
           </div>
-          <button onclick="editar()">𖦹</button>
+        </div>
+          <span class="sentimento" >Sentimento</span>
         </div>
 
         <p>
@@ -72,17 +82,19 @@
         <div class="interacao">
           <button><span>♡ 12</span></button>
           <button><span>💬 3</span></button>
-          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
         </div>
       </div>
 
       <div class="post">
+        <div class="topo_post">
         <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max2.jpg">
+          <img src="../public/assets/imgs/FotosPerfil/Max2.jpg">
           <div>
-            <h3>${nome}</h3>
-            <span>8 de junho, 09:15</span>
+            <h3>nome2</h3>
+            <span>dia, horario</span>
           </div>
+        </div>
+          <span class="sentimento" >Sentimento</span>
         </div>
 
         <p>
@@ -92,19 +104,22 @@
         <img class="imagem_post" src="./assets/imgs/max_polaroids.jpeg">
 
         <div class="interacao">
-          <button><span>♡ 5</span></button>
-          <button><span>💬 1</span></button>
-          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
+          <button><span>♡ 12</span></button>
+          <button><span>💬 3</span></button>
         </div>
       </div>
 
+
       <div class="post">
+        <div class="topo_post">
         <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max3.jpg">
+          <img src="../public/assets/imgs/FotosPerfil/Max3.jpg">
           <div>
-            <h3>${nome}</h3>
-            <span>2 de junho, 22:00</span>
+            <h3>nome3</h3>
+            <span>dia, horario</span>
           </div>
+        </div>
+        <span class="sentimento" >Sentimento</span>
         </div>
 
         <p>
@@ -114,11 +129,11 @@
         <img class="imagem_post" src="./assets/imgs/chloe_carro.jpeg">
 
         <div class="interacao">
-          <button><span>♡ 8</span></button>
-          <button><span>💬 2</span></button>
-          <button class="excluir" onclick="excluir()"><span>🗑 Excluir</span></button>
+          <button><span>♡ 12</span></button>
+          <button><span>💬 3</span></button>
         </div>
       </div>
+
 
     </div>
 
