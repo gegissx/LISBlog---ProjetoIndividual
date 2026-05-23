@@ -86,46 +86,6 @@
     var emailVar = ipt_email.value;
     var senhaVar = ipt_senha.value;
 
-    // Verificação nome
-
-    if ((nomeVar == ``)) {
-      erroNome.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe seu nome</span>`;
-    } else {
-      erroNome.innerHTML = ``;
-    }
-
-    // Verificação Nickname
-
-    if (nicknameVar == ``) {
-      erroNick.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe um Nickname</span>`;
-    } else {
-      erroNick.innerHTML = ``;
-
-      for (let index = 0; index < ListaNickname.length; index++) {
-        if (ListaNickname[index] == nicknameVar) {
-          texto.innerHTML = `Este nick já está sendo utilizado`;
-        } else {
-          ListaNickname.push(nicknameVar);
-        }
-      }
-    }
-
-    // Verificação Email
-
-    if (emailVar == `` || !emailVar.includes("@")) {
-      erroEmail.innerHTML = `<span class="mensagem_erro">ⓘ Por favor, informe um E-mail válido</span>`;
-    } else {
-      erroEmail.innerHTML = ``;
-
-      for (let index = 0; index < ListaEmail.length; index++) {
-        if (ListaEmail[index] == emailVar) {
-          texto.innerHTML = `Este e-mail já está sendo utilizado`;
-        } else {
-          ListaEmail.push(emailVar);
-        }
-      }
-    }
-
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
@@ -142,11 +102,11 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          mensagem_erro.innerHTML =
+          texto.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "./login.html";
           }, "2000");
 
           limparFormulario();

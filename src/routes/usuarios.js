@@ -12,4 +12,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+function buscarNickname(nickname) {
+    var instrucaoSql = `
+        SELECT nickname FROM usuarios WHERE nickname = '${nickname}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = router;
