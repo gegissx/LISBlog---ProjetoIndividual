@@ -123,6 +123,8 @@ header {
 .inputs span {
   font-size: 16px;
   color: #5c4a3d;
+  font-family: "Zen Loop", cursive;
+  font-weight: bold;
 }
 
 /* Botão de cadastro */
