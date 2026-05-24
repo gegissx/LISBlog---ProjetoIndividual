@@ -18,6 +18,7 @@
 
   <body>
     <div class="corpo">
+      
       <!-- parte do cadastro -->
       <div class="container">
         <header>
@@ -35,33 +36,86 @@
           <h3>𖦹 Essa ação terá consequências</h3>
 
           <div class="inputs">
-            <p>Nome completo<span id="erroNome"></span></p>
+            <p>
+              Nome completo<span id="erroNome" class="mensagem_erro"></span>
+            </p>
             <input
               type="text"
               id="ipt_nome"
               placeholder="𖨆  Insira seu nome completo"
             />
-            <p>Nickname<span id="erroNick"></span></p>
+
+            <p>Nickname<span id="erroNick" class="mensagem_erro"></span></p>
             <input
               type="text"
               id="ipt_NickName"
               placeholder="🜲  Insira seu Nickname"
             />
-            <p>E-mail<span id="erroEmail"></span></p>
+
+            <p>E-mail<span id="erroEmail" class="mensagem_erro"></span></p>
             <input
               type="text"
               id="ipt_email"
               placeholder="✉ Insira seu e-mail"
             />
-            <p>Senha<span id="erroSenha"></span></p>
+
+            <p>Senha<span id="erroSenha" class="mensagem_erro"></span></p>
             <input
               type="text"
               id="ipt_senha"
               placeholder="🔒︎ Insira sua senha"
             />
+
+            <p>Foto de perfil<span id="erroFoto" class="mensagem_erro"></span></p>
+            <button onclick="abrirSelecao()">
+            <img id="escolhaFoto" src="./assets/imgs/FotosPerfil/placeholder.jpg"/>
+            <span id="texto_foto">Escolher foto de perfil</span>
+            </button>
           </div>
+
           <button class="botao" onclick="cadastrar()">Criar conta</button>
-        <div id="texto"></div>
+          <div class="mensagem_erro" id="texto"></div>
+        </div>
+      </div>
+
+      <div class="selecao_fundo" id="selecao_fundo">
+        <div class="selecao">
+          <div class="topo">
+            <h2>Escolha sua foto de perfil</h2>
+            <button class="fechar" onclick="fecharSelecao()">✕</button>
+          </div>
+
+          <div class="fotos" id="fotos">
+            <div class="linha">
+              <p class="nome">Alex</p>
+              <div class="foto_linha" id="fotos_Alex"></div>
+            </div>
+
+            <div class="linha">
+              <p class="nome">Chloe</p>
+              <div class="foto_linha" id="fotos_Chloe"></div>
+            </div>
+
+            <div class="linha">
+              <p class="nome">Daniel</p>
+              <div class="foto_linha" id="fotos_Daniel"></div>
+            </div>
+
+            <div class="linha">
+              <p class="nome">Max</p>
+              <div class="foto_linha" id="fotos_Max"></div>
+            </div>
+
+            <div class="linha">
+              <p class="nome">Rachel</p>
+              <div class="foto_linha" id="fotos_Rachel"></div>
+            </div>
+
+            <div class="linha">
+              <p class="nome">Sean</p>
+              <div class="foto_linha" id="fotos_Sean"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -77,6 +131,28 @@
 </html>
 
 <script>
+  let personagens = [
+    { nome: "Alex", quantidade: 5 },
+    { nome: "Chloe", quantidade: 5 },
+    { nome: "Daniel", quantidade: 5 },
+    { nome: "Max", quantidade: 5 },
+    { nome: "Rachel", quantidade: 5 },
+    { nome: "Sean", quantidade: 5 },
+  ];
+
+  for (let index = 0; index < personagens.length; index++) {
+    let nome = personagens[index].nome;
+    let quantidade = personagens[index].quantidade;
+
+    for (let i = 1; i <= quantidade; i++) {
+      document.getElementById("fotos_" + nome).innerHTML +=
+        `<img src="./assets/imgs/FotosPerfil/${nome}${i}.jpg"
+              id="${nome}${i}"
+              class="foto_opcao"
+              onclick="selecionarFoto('${nome}${i}', '${nome}${i}.jpeg')" />`;
+    }
+  }
+
   let ListaNickname = ["teste"];
   let ListaEmail = ["teste"];
 

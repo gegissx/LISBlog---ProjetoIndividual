@@ -54,21 +54,20 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 60px;
-  margin-left: 50px;
+  margin-left: 180px;
+  margin-top: -80px;
 }
 
 .area-cadastro h1 {
   font-size: 42px;
   font-weight: 700;
-  margin-bottom: 5px;
 }
 
 .area-cadastro h3 {
   font-size: 20px;
   font-weight: 400;
   color: #709897;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 /* Inputs */
@@ -82,12 +81,11 @@ header {
 
 .inputs p {
   font-size: 16px;
-  margin-bottom: 8px;
 }
 
 .inputs input {
-  width: 100%;
-  max-width: 400px;
+  width: 380px;
+  height: 45px;
   padding: 14px 16px;
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -97,7 +95,37 @@ header {
   color: #667;
 }
 
-/* Botão */
+.inputs button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #FAF8F5;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 16px;
+  width: 380px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+ 
+.inputs button:hover {
+  background-color: #ece4db;
+}
+ 
+.inputs img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d8cec3;
+}
+ 
+.inputs span {
+  font-size: 16px;
+  color: #5c4a3d;
+}
+
+/* Botão de cadastro */
 
 .botao {
   align-items: center;
@@ -119,11 +147,17 @@ header {
   background-color: #5a7f7e;
 }
 
+.mensagem_erro {
+  color: #a0786a;
+  font-size: 14px;
+}
+
+
 /* lado da imagem */
 
 .lado-imagem {
   width: 50%;
-  height: 100vh;
+  height: 800px;
   background: url("../assets/imgs/chloe_carro.jpeg") no-repeat;
   background-size: cover;
 }
@@ -149,3 +183,62 @@ header {
   border-radius: 8px;
   font-size: 14px;
 }
+
+/* Fotos */
+ 
+.selecao_fundo {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.selecao {
+  background-color: #F5F0E7;
+  border-radius: 16px;
+  padding: 30px;
+  width: 550px;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.topo h2 {
+  font-size: 24px;
+}
+ 
+.fechar {
+  background-color: #ece4db;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #5c4a3d;
+}
+ 
+.fechar:hover {
+  background-color: #d8cec3;
+}
+ 
+.fotos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
