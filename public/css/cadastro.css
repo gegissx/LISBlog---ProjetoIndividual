@@ -206,11 +206,12 @@ header {
   border-radius: 16px;
   padding: 30px;
   width: 550px;
-  max-height: 80vh;
-  overflow-y: auto;
+  height: 600px;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 }
  
 .topo {
@@ -244,3 +245,39 @@ header {
   gap: 20px;
 }
 
+.linha {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nome {
+  font-size: 18px;
+  color: #5c4a3d;
+}
+
+.foto_linha {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.foto_opcao {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: transform 0.2s;
+}
+
+.foto_opcao:hover {
+  transform: scale(1.08);
+  border: 3px solid #d8cec3;
+}
+
+.foto_selecionada {
+  border: 3px solid #709897;
+  transform: scale(1.08);
+}

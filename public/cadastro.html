@@ -18,7 +18,7 @@
 
   <body>
     <div class="corpo">
-      
+
       <!-- parte do cadastro -->
       <div class="container">
         <header>
@@ -131,6 +131,7 @@
 </html>
 
 <script>
+
   let personagens = [
     { nome: "Alex", quantidade: 5 },
     { nome: "Chloe", quantidade: 5 },
@@ -145,13 +146,46 @@
     let quantidade = personagens[index].quantidade;
 
     for (let i = 1; i <= quantidade; i++) {
-      document.getElementById("fotos_" + nome).innerHTML +=
+      document.getElementById(`fotos_${nome}`).innerHTML +=
         `<img src="./assets/imgs/FotosPerfil/${nome}${i}.jpg"
               id="${nome}${i}"
               class="foto_opcao"
-              onclick="selecionarFoto('${nome}${i}', '${nome}${i}.jpeg')" />`;
+              onclick="selecionarFoto('${nome}${i}')" />`;
     }
   }
+
+  function abrirSelecao() {
+    document.getElementById("selecao_fundo").style.display = "flex";
+  }
+ 
+  function fecharSelecao() {
+    document.getElementById("selecao_fundo").style.display = "none";
+  }
+
+let todasFotos = [
+    "Alex1", "Alex2", "Alex3", "Alex4", "Alex5",
+    "Chloe1", "Chloe2", "Chloe3", "Chloe4", "Chloe5",
+    "Daniel1", "Daniel2", "Daniel3", "Daniel4", "Daniel5",
+    "Max1", "Max2", "Max3", "Max4", "Max5",
+    "Rachel1", "Rachel2", "Rachel3", "Rachel4", "Rachel5",
+    "Sean1", "Sean2", "Sean3", "Sean4", "Sean5"
+];
+
+function selecionarFoto(idFoto) {
+
+    for (let i = 0; i < todasFotos.length; i++) {
+        document.getElementById(todasFotos[i]).classList.remove("foto_selecionada");
+    }
+
+    document.getElementById(idFoto).classList.add("foto_selecionada");
+
+    document.getElementById("escolhaFoto").src = `./assets/imgs/FotosPerfil/${idFoto}.jpg`;
+    document.getElementById("texto_foto").innerHTML = `${idFoto} ✓`;
+
+    fotoSelecionada = `${idFoto}.jpg`;
+    document.getElementById("erroFoto").innerHTML = "";
+
+}
 
   let ListaNickname = ["teste"];
   let ListaEmail = ["teste"];
