@@ -38,5 +38,9 @@ router.post("/curtir/:idUsuario/:idPostagem", function (req, res) {
     postagemController.curtir(req, res);
 });
 
+// verificar se post do feed já foi curtido
+router.get("/curtir/:idUsuario/:idPostagem/verificar", function (req, res) {
+    postagemController.verificarCurtida(req, res);
+});
 
 module.exports = router;

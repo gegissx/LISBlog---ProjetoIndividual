@@ -1,187 +1,179 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/posts.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/posts.css" />
+    <!-- fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <!-- fontes-->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap" rel="stylesheet" />
-</head>
-
-<body>
-
-  <!-- NavBar-->
+  <body>
+    <!-- NavBar-->
     <nav class="navBar">
+      <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
 
-    <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
-
-    <div class="menu">
-      <a href="./posts.html">⌂ Feed</a>
-      <a href="./meus_posts.html">🖹 Meus posts</a> 
-      <a href="./memorias.html">♡ Minhas memorias</a>
-      <a href="./dashboard.html">✎ Resumo</a>
-      <a href="./index.html">➜] Sair</a>
-    </div>
-
-    <div class="usuario_perfil">
-        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
-        <div class="usuario_info">
-          <span class="usuario_nome">${nome}</span>
-          <span class="usuario_nick">@${nickname}</span>
-        </div>
+      <div class="menu">
+        <a href="./posts.html">⌂ Feed</a>
+        <a href="./meus_posts.html">🖹 Meus posts</a>
+        <a href="./memorias.html">♡ Minhas memorias</a>
+        <a href="./dashboard.html">✎ Resumo</a>
+        <a href="./index.html">➜] Sair</a>
       </div>
 
+      <div class="usuario_perfil">
+        <img class="foto_perfil" id="foto_perfil" src="" />
+        <div class="usuario_info">
+          <span class="usuario_nome" id="usuario_nome"></span>
+          <span class="usuario_nick" id="usuario_nick"></span>
+        </div>
+      </div>
+    </nav>
 
-  </nav>
- 
- <!--Aréa das postagens-->
+    <!--Aréa das postagens-->
 
- <div class="container">
+    <div class="container">
+      <div class="titulo">
+        <h1>Que bom te ver por aqui, <span id="usuarion_nome2"></span></h1>
+        <p>O que você vai escrever hoje?</p>
+      </div>
+      <br />
 
-    <div class="titulo">
-    <h1>Que bom te ver por aqui, ${nome}</h1>
-    <p>O que você vai escrever hoje?</p>
-    </div> <br>
+      <div class="postagem">
+        <div class="cima">
+          <textarea
+            id="texto_postagem"
+            maxlength="500"
+            placeholder="✎𓂃 Escreva sobre o que você está vivendo..."
+          ></textarea>
+        </div>
 
-    <div class="postagem">
+        <img id="imagem_post" class="imagem_post" />
 
-    <div class="cima">
-        <textarea id="texto_postagem" maxlength="500" placeholder="✎𓂃 Escreva sobre o que você está vivendo..."></textarea>
-    </div>
+        <div class="baixo">
+          <span
+            ><select id="sentimentos">
+              <option value="0"></option>
+              <option value="1">Alegria</option>
+              <option value="2">Alivio</option>
+              <option value="3">Ansiedade</option>
+              <option value="4">Culpa</option>
+              <option value="5">Esperança</option>
+              <option value="6">Medo</option>
+              <option value="7">Paz</option>
+              <option value="8">Raiva</option>
+              <option value="9">Tristeza</option></select
+            >Escolher sentimento</span
+          >
 
-    <img id="imagem_post" class="imagem_post">
+          <span
+            ><input
+              class="Input_imagem"
+              type="file"
+              id="ipt_imagem"
+              onchange="verImagem()"
+            />Adicionar imagem</span
+          >
 
-    <div class="baixo">
-          <span><select id="sentimentos">
-            <option value="0"></option>
-            <option value="1">Alegria</option>
-            <option value="2">Alivio</option>
-            <option value="3">Ansiedade</option>
-            <option value="4">Culpa</option>
-            <option value="5">Esperança</option>
-            <option value="6">Medo</option>
-            <option value="7">Paz</option>
-            <option value="8">Raiva</option>
-            <option value="9">Tristeza</option>
-        </select>Escolher sentimento</span>
-        
-
-        <span><input class="Input_imagem" type="file" id="ipt_imagem" onchange="verImagem()">Adicionar imagem</span>
-
-        <div class="Input_check">
-          <input type="checkbox" id="ipt_importante">
-           <span>Memória importante</span>
+          <div class="Input_check">
+            <input type="checkbox" id="ipt_importante" />
+            <span>Memória importante</span>
           </div>
 
           <button onclick="enviar()">Enviar ➢</button>
-
-        
-    </div>
-    </div>
- 
-
-<!-- FEED -->
-
-    <div class="feed">
-
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max1.jpg">
-          <div>
-            <h3>nome1</h3>
-            <span>dia, horario</span>
-          </div>
-        </div>
-          <span class="sentimento" >Sentimento</span>
-        </div>
-
-        <p>
-          texto texto texto texto texto texto texto texto texto texto
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/farol.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
         </div>
       </div>
 
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max2.jpg">
-          <div>
-            <h3>gegiss</h3>
-            <span>Hoje, 04:47</span>
-          </div>
-        </div>
-          <span class="sentimento" >Saudade</span>
-        </div>
+      <!-- FEED -->
 
-        <p>
-          Gostaria de poder ficar neste momento para sempre... Mas aí não seria mais um momento.
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/max_polaroids.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
-        </div>
-      </div>
-
-
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max3.jpg">
-          <div>
-            <h3>nome3</h3>
-            <span>dia, horario</span>
-          </div>
-        </div>
-        <span class="sentimento" >Sentimento</span>
-        </div>
-
-        <p>
-          texto texto texto texto texto texto texto texto texto texto
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/chloe_carro.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
-        </div>
-      </div>
-
-
+      <div class="feed" id="feed"></div>
     </div>
-
-  </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
 
 <script>
-  
-  function verImagem(){
-    let arquivo = ipt_imagem.files[0];
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nomeUsuario = sessionStorage.NOME_USUARIO;
+  var nicknameUsuario = sessionStorage.NICKNAME_USUARIO;
+  var fotoUsuario = sessionStorage.FOTO_USUARIO;
 
-    if (arquivo) {
-        imagem_post.src = URL.createObjectURL(arquivo);
-        imagem_post.style.display = "block";
-    }
-
+  if (idUsuario == null || nomeUsuario == null) {
+    window.location = "./login.html";
   }
 
+  document.getElementById("usuario_nome").innerHTML = nomeUsuario;
+  document.getElementById("usuario_nick").innerHTML = `@${nicknameUsuario}`;
+  document.getElementById("foto_perfil").src =
+    `./assets/imgs/FotosPerfil/${fotoUsuario}`;
 
+  document.getElementById("usuarion_nome2").innerHTML = nomeUsuario;
+
+  // feed
+
+  function carregarFeed() {
+    fetch("/postagens/listar")
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (listaPosts) {
+            var feed = document.getElementById("feed");
+            feed.innerHTML = "";
+
+            for (let index = 0; index < listaPosts.length; index++) {
+              let post = listaPosts[index];
+
+              let dataFormatada = new Date(post.dtPostagem).toLocaleString(
+                "pt-BR",
+                {
+                  day: "2-digit",
+                  month: "long",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                },
+              );
+              let fotoSrc = `./assets/imgs/FotosPerfil/${post.fotoPerfil}`;
+
+              // imagem do post
+              let imgPost = "";
+              if (post.fotoPost != null) {
+                imgPost = `<img class="imagem_post" src="${post.fotoPost}" style="display:block">`;
+              }
+
+              feed.innerHTML += `<div class="post" id="post_${post.idPostagem}">
+
+                  <div class="topo_post">
+
+                  <div class="usuario">
+                  <img src="${fotoSrc}"><div> <h3>${post.nome}</h3><span>${dataFormatada}</span></div>
+                    </div>
+                    <span class="sentimento">${post.sentimento}</span>
+                  </div>
+
+                  <p>${post.post}</p>
+                  ${imgPost}
+
+                  <div class="interacao">
+                    <button id="curtir_${post.idPostagem}" onclick="curtir(${post.idPostagem})">
+                      <span id="coracao_${post.idPostagem}">♡</span>
+                    </button>
+                  </div>
+                </div>`;
+            }
+          verificarCurtidasFeed(listaPosts);
+          });
+
+        } 
+      })
+      .catch(function (erro) {
+        console.log("Erro ao carregar feed: ", erro);
+      });
+  }
+
+  carregarFeed()
+  
 </script>

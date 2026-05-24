@@ -173,6 +173,23 @@ function curtir(req, res) {
         );
 }
 
+function verificarCurtida(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var idPostagem = req.params.idPostagem;
+
+    postagemModel.verificarCurtida(idUsuario, idPostagem)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json({ curtido: true, idPostagem: idPostagem });
+            } else {
+                res.status(200).json({ curtido: false, idPostagem: idPostagem });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 module.exports = {
     listar,
@@ -180,5 +197,6 @@ module.exports = {
     listarMemorias,
     publicar,
     deletar,
-    curtir
+    curtir,
+    verificarCurtida
 }
