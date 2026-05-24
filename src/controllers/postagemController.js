@@ -42,7 +42,7 @@ function listarPorUsuario(req, res) {
 function listarMemorias(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    postagemModel.listarPorUsuario(idUsuario)
+    postagemModel.listarMemorias(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -134,10 +134,10 @@ function deletar(req, res) {
 }
 
 function curtir(req, res) {
-    var idPostagem = req.params.idpostagem;
+    var idPostagem = req.params.idPostagem;
     var idUsuario = req.params.idUsuario;
 
-    postagemModel.verificarCurtida(idUsuario, idpostagem)
+    postagemModel.verificarCurtida(idUsuario, idPostagem)
         .then(
             function (resultado) {
 

@@ -60,15 +60,15 @@
           <span
             ><select id="sentimentos">
               <option value="0"></option>
-              <option value="1">Alegria</option>
-              <option value="2">Alivio</option>
-              <option value="3">Ansiedade</option>
-              <option value="4">Culpa</option>
-              <option value="5">Esperança</option>
-              <option value="6">Medo</option>
-              <option value="7">Paz</option>
-              <option value="8">Raiva</option>
-              <option value="9">Tristeza</option></select
+              <option value="Alegria">Alegria</option>
+              <option value="Alivio">Alivio</option>
+              <option value="Ansiedade">Ansiedade</option>
+              <option value="Culpa">Culpa</option>
+              <option value="Esperança">Esperança</option>
+              <option value="Medo">Medo</option>
+              <option value="Paz">Paz</option>
+              <option value="Raiva">Raiva</option>
+              <option value="Tristeza">Tristeza</option></select
             >Escolher sentimento</span
           >
 
@@ -98,6 +98,8 @@
 </html>
 
 <script>
+
+  // colocando informações do usuário logado nos campos necessários
   var idUsuario = sessionStorage.ID_USUARIO;
   var nomeUsuario = sessionStorage.NOME_USUARIO;
   var nicknameUsuario = sessionStorage.NICKNAME_USUARIO;
@@ -159,7 +161,7 @@
 
                   <div class="interacao">
                     <button id="curtir_${post.idPostagem}" onclick="curtir(${post.idPostagem})">
-                      <span id="coracao_${post.idPostagem}">♡</span>
+                      <span id="coracao_${post.idPostagem}">🩶</span>
                     </button>
                   </div>
                 </div>`;
@@ -173,6 +175,128 @@
         console.log("Erro ao carregar feed: ", erro);
       });
   }
+
+  // verificar se algum post do feed já foi curtido pelo usuário
+
+  function verificarCurtidasFeed(listaPosts) {
+
+    for (let index = 0; index < listaPosts.length; index++) {
+      let idPostagem = listaPosts[index].idPostagem;
+
+      fetch(`/postagens/curtir/${idUsuario}/${idPostagem}/verificar`)  
+        .then(function (resposta) {
+          if (resposta.ok) {
+            resposta.json().then(function (resultado) {
+              if (resultado.curtido == true) {
+                document
+                  .getElementById(`coracao_${resultado.idPostagem}`)
+                  .classList.add("curtido");
+                document.getElementById(
+                  `coracao_${resultado.idPostagem}`,
+                ).innerHTML = "💙";
+              }
+            });
+          }
+        })
+        .catch(function (erro) {
+          console.log("Erro ao verificar curtida: ", erro);
+        });
+    }
+  }
+
+
+  // curtir e descurtir os posts
+
+  function curtir(idPostagem) {
+    fetch(`/postagens/curtir/${idUsuario}/${idPostagem}`, {
+      method: "POST",
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (resultado) {
+            var coracao = document.getElementById(`coracao_${idPostagem}`);
+
+            if (resultado.curtido == true) {
+              coracao.classList.add("curtido");
+              coracao.innerHTML = "💙";
+            } else {
+              coracao.classList.remove("curtido");
+              coracao.innerHTML = "🩶";
+            }
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log("Erro ao curtir: ", erro);
+      });
+  }
+
+
+  // postar
+
+  function enviar() {
+    let post = texto_postagem.value;
+    let selectSentimento = document.getElementById("sentimentos");
+    let sentimento = selectSentimento.value;
+
+    let importante = 0
+    if (ipt_importante.checked){
+      importante = 1
+    }
+
+    if (post == "") {
+      alert("Até o silêncio precisa de algumas palavras. Você precisa escrever algo antes de continuar!");
+      return false;
+    }
+
+    if (selectSentimento.value == "0") {
+      alert("Toda memória carrega um sentimento. Escolha o sentimento que melhor representa esse momento!");
+      return false;
+    }
+
+
+    fetch("/postagens/publicar/" + idUsuario, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post: post,
+        sentimento: sentimento,
+        importante: importante,
+        foto: null,
+      }),
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+
+          texto_postagem.value = "";
+          selectSentimento.value = "0";
+          ipt_importante.checked = false;
+          imagem_post.style.display = "none";
+          imagem_post.src = "";
+
+          carregarFeed();
+
+        } else {
+          console.log("Erro ao publicar");
+        }
+      })
+      .catch(function (erro) {
+        console.log("Erro: ", erro);
+      });
+
+  }
+
+    function verImagem() {
+    let arquivo = ipt_imagem.files[0];
+
+    if (arquivo) {
+      imagem_post.src = URL.createObjectURL(arquivo);
+      imagem_post.style.display = "block";
+    }
+  }
+
 
   carregarFeed()
   
