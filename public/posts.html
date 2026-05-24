@@ -53,6 +53,8 @@
         <textarea id="texto_postagem" maxlength="500" placeholder="✎𓂃 Escreva sobre o que você está vivendo..."></textarea>
     </div>
 
+    <img id="imagem_post" class="imagem_post">
+
     <div class="baixo">
           <span><select id="sentimentos">
             <option value="0"></option>
@@ -68,7 +70,7 @@
         </select>Escolher sentimento</span>
         
 
-        <span><input class="Input_imagem" type="file" id="ipt_imagem">Adicionar imagem</span>
+        <span><input class="Input_imagem" type="file" id="ipt_imagem" onchange="verImagem()">Adicionar imagem</span>
 
         <div class="Input_check">
           <input type="checkbox" id="ipt_importante">
@@ -168,3 +170,18 @@
 </body>
 
 </html>
+
+<script>
+  
+  function verImagem(){
+    let arquivo = ipt_imagem.files[0];
+
+    if (arquivo) {
+        imagem_post.src = URL.createObjectURL(arquivo);
+        imagem_post.style.display = "block";
+    }
+
+  }
+
+
+</script>

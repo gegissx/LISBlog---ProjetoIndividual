@@ -101,6 +101,13 @@ header {
   color: #667;
 }
 
+.inputs span {
+  font-size: 16px;
+  color: #5c4a3d;
+  font-family: "Zen Loop", cursive;
+  font-weight: bold;
+}
+
 /* Botão */
 
 .botao {
@@ -122,6 +129,13 @@ header {
 .botao:hover {
   background-color: #5a7f7e;
 }
+
+.mensagem_erro {
+  color: #a0786a;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
 
 /* lado da imagem */
 .lado-imagem {

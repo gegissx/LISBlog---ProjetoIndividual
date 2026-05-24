@@ -33,13 +33,13 @@
           <h3>Continue sua jornada preenchendo as informações abaixo</h3>
 
           <div class="inputs">
-            <p>E-mail<span id="erroEmail"></span></p>
+            <p>E-mail<span id="erroEmail" class="mensagem_erro"></span></p>
             <input
               type="text"
               id="ipt_email"
               placeholder="✉ Insira seu e-mail"
             />
-            <p>Senha<span id="erroSenha"></span></p>
+            <p>Senha<span id="erroSenha" class="mensagem_erro"></span></p>
             <input
               type="password"
               id="ipt_senha"
@@ -71,10 +71,24 @@
         var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
 
-        if (emailVar == "" || senhaVar == "") {
-           texto.innerHTML = "erro";
-            return false;
+        erroEmail.innerHTML = "";
+        erroSenha.innerHTML = "";
+
+        let temErro = false;
+
+        if (emailVar == "" || !emailVar.includes("@")) {
+            erroEmail.innerHTML = " ⓘ Informe um e-mail válido";
+            temErro = true;
         }
+
+        if (senhaVar == "") {
+            erroSenha.innerHTML = " ⓘ Informe sua senha";
+            temErro = true;
+        }
+
+        if (temErro == true) {
+            return false;
+}
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -99,12 +113,16 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario; 
+                    sessionStorage.NICKNAME_USUARIO = json.nickname;  
+                    sessionStorage.FOTO_USUARIO = json.foto; 
 
                     setTimeout(function () {
                         window.location = "./posts.html";
                     }); 
                 });
             } else {
+                texto.innerHTML = `Email e/ou senha inválido(s)`
                 console.log("Houve um erro ao tentar realizar o login!");
                 resposta.text().then(texto => {
                     console.error(texto);
