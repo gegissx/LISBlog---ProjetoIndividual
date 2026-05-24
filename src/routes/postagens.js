@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+const upload = require('../config/configUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var postagemController = require("../controllers/postagemController");
 
 
@@ -20,7 +20,7 @@ router.get("/memorias/:idUsuario", function (req, res) {
 });
 
 // publicar
-router.post("/publicar/:idUsuario", function (req, res) {
+router.post("/publicar/:idUsuario", upload.single('foto'), function (req, res) {
     postagemController.publicar(req, res);
 });
 

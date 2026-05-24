@@ -66,10 +66,12 @@ function listarMemorias(req, res) {
 
 function publicar(req, res) {
     var post = req.body.post;
-    var foto = req.body.foto;
+    var foto = null;
     var importante = req.body.importante;
     var sentimento = req.body.sentimento;
     var idUsuario = req.params.idUsuario;
+
+    if (req.file){ foto = `'${req.file.filename}'`}
 
     if (post == undefined) {
         res.status(400).send("O post está indefinido!");
@@ -77,8 +79,6 @@ function publicar(req, res) {
         res.status(400).send("O sentimento está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
-    } else if (importante == undefined) {
-        res.status(403).send("A importancia do post está indefinida!");
     } else {
         postagemModel.publicar(post, foto, importante, sentimento, idUsuario)
             .then(

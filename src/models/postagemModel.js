@@ -31,7 +31,7 @@ function publicar(post, foto, importante, sentimento, idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", post, idUsuario);
     var instrucaoSql = `
         INSERT INTO postagem (post, foto, importante, sentimento, fkUsuario) VALUES 
-        ('${post}', '${foto}', ${importante}, '${sentimento}', ${idUsuario});
+        ('${post}', ${foto}, ${importante}, '${sentimento}', ${idUsuario});
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

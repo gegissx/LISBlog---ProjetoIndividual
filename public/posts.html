@@ -118,6 +118,30 @@
 
   // feed
 
+  function corSentimento(sentimento) {
+    if (sentimento == "Alegria") {
+        return "sentimento_alegria";
+    } else if (sentimento == "Alivio") {
+        return "sentimento_alivio";
+    } else if (sentimento == "Ansiedade") {
+        return "sentimento_ansiedade";
+    } else if (sentimento == "Culpa") {
+        return "sentimento_culpa";
+    } else if (sentimento == "Esperança") {
+        return "sentimento_esperanca";
+    } else if (sentimento == "Medo") {
+        return "sentimento_medo";
+    } else if (sentimento == "Paz") {
+        return "sentimento_paz";
+    } else if (sentimento == "Raiva") {
+        return "sentimento_raiva";
+    } else if (sentimento == "Tristeza") {
+        return "sentimento_tristeza";
+    } else {
+        return "sentimento";
+    }
+}
+
   function carregarFeed() {
     fetch("/postagens/listar")
       .then(function (resposta) {
@@ -143,7 +167,7 @@
               // imagem do post
               let imgPost = "";
               if (post.fotoPost != null) {
-                imgPost = `<img class="imagem_post" src="${post.fotoPost}" style="display:block">`;
+                imgPost = `<img class="imagem_post" src="./assets/imgs/posts/${post.fotoPost}" style="display:block">`;
               }
 
               feed.innerHTML += `<div class="post" id="post_${post.idPostagem}">
@@ -153,7 +177,7 @@
                   <div class="usuario">
                   <img src="${fotoSrc}"><div> <h3>${post.nome}</h3><span>${dataFormatada}</span></div>
                     </div>
-                    <span class="sentimento">${post.sentimento}</span>
+                    <span class="sentimento ${corSentimento(post.sentimento)}">${post.sentimento}</span>
                   </div>
 
                   <p>${post.post}</p>
@@ -231,7 +255,6 @@
       });
   }
 
-
   // postar
 
   function enviar() {
@@ -254,19 +277,19 @@
       return false;
     }
 
+    const formData = new FormData();
+    formData.append('post', post);
+    formData.append('sentimento', sentimento);
+    formData.append('importante', importante);
+ 
+    if (ipt_imagem.files[0]) {
+        formData.append('foto', ipt_imagem.files[0])};
+
 
     fetch("/postagens/publicar/" + idUsuario, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        post: post,
-        sentimento: sentimento,
-        importante: importante,
-        foto: null,
-      }),
-    })
+      body: formData
+      })
       .then(function (resposta) {
         if (resposta.ok) {
 
@@ -296,7 +319,6 @@
       imagem_post.style.display = "block";
     }
   }
-
 
   carregarFeed()
   
