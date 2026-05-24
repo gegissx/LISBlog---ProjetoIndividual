@@ -66,7 +66,7 @@
               placeholder="🔒︎ Insira sua senha"
             />
 
-            <p>Foto de perfil<span id="erroFoto" class="mensagem_erro"></span></p>
+            <p>Foto de perfil</p>
             <button onclick="abrirSelecao()">
             <img id="escolhaFoto" src="./assets/imgs/FotosPerfil/placeholder.jpg"/>
             <span id="texto_foto">Escolher foto de perfil</span>
@@ -74,7 +74,7 @@
           </div>
 
           <button class="botao" onclick="cadastrar()">Criar conta</button>
-          <div class="mensagem_erro" id="texto"></div>
+          <div id="texto" class="mensagem_erro"></div>
         </div>
       </div>
 
@@ -171,6 +171,8 @@ let todasFotos = [
     "Sean1", "Sean2", "Sean3", "Sean4", "Sean5"
 ];
 
+var fotoSelecionada = `placeholder.jpg`;
+
 function selecionarFoto(idFoto) {
 
     for (let i = 0; i < todasFotos.length; i++) {
@@ -183,18 +185,48 @@ function selecionarFoto(idFoto) {
     document.getElementById("texto_foto").innerHTML = `${idFoto} ✓`;
 
     fotoSelecionada = `${idFoto}.jpg`;
-    document.getElementById("erroFoto").innerHTML = "";
-
 }
 
-  let ListaNickname = ["teste"];
-  let ListaEmail = ["teste"];
 
   function cadastrar() {
     var nomeVar = ipt_nome.value;
     var nicknameVar = ipt_NickName.value;
     var emailVar = ipt_email.value;
     var senhaVar = ipt_senha.value;
+
+    erroNome.innerHTML = "";
+    erroNick.innerHTML = "";
+    erroEmail.innerHTML = "";
+    erroSenha.innerHTML = "";
+
+    // validações
+
+    let temErro = false;
+ 
+    if (nomeVar == "" || nomeVar.length < 3) {
+      erroNome.innerHTML = ` ⓘ Toda história precisa de um autor, informe seu nome`;
+      temErro = true;
+    }
+ 
+    if (nicknameVar == "") {
+      erroNick.innerHTML = `ⓘ Escolha como você quer ser lembrado aqui, informe um Nickname`;
+      temErro = true;
+    }
+ 
+    if (emailVar == "" || !emailVar.includes("@") || emailVar.length < 10) {
+      erroEmail.innerHTML = ` ⓘ Você precisa deixar um caminho para voltar, por favor, informe um e-mail válido`;
+      temErro = true;
+    }
+ 
+    if (senhaVar == "" || senhaVar.length < 10 ) {
+      erroSenha.innerHTML = ` ⓘ Memórias importantes precisam de proteção, tenha pelo menos 10 caracteres`;
+      temErro = true;
+    }
+ 
+    if (temErro == true) {
+      return false;
+    }
+
 
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -206,6 +238,7 @@ function selecionarFoto(idFoto) {
         emailServer: emailVar,
         senhaServer: senhaVar,
         nicknameServer: nicknameVar,
+        fotoServer: fotoSelecionada
       }),
     })
       .then(function (resposta) {
@@ -219,7 +252,6 @@ function selecionarFoto(idFoto) {
             window.location = "./login.html";
           }, "2000");
 
-          limparFormulario();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
@@ -230,4 +262,5 @@ function selecionarFoto(idFoto) {
 
     return false;
   }
+
 </script>
