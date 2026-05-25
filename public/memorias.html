@@ -13,6 +13,9 @@
 </head>
 
 <body>
+  <audio autoplay loop>
+    <source src="" type="audio/mpeg">
+  </audio>
 
   <!-- NavBar-->
   <nav class="navBar">
@@ -28,10 +31,10 @@
     </div>
 
     <div class="usuario_perfil">
-        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
+        <img class="foto_perfil" id="foto_perfil" src="" />
         <div class="usuario_info">
-          <span class="usuario_nome">${nome}</span>
-          <span class="usuario_nick">@${nickname}</span>
+          <span class="usuario_nome" id="usuario_nome"></span>
+          <span class="usuario_nick" id="usuario_nick"></span>
         </div>
       </div>
 
@@ -42,64 +45,91 @@
   <div class="container">
 
     <div class="titulo">
-      <h1>Memórias importantes</h1>
+      <h1>Momentos importantes</h1>
       <p>Os momentos que você guardou com carinho</p>
     </div>
 
-    <div class="quadro_memorias">
+    <div class="quadro_memorias" id="quadro">
 
-      <div class="polaroid">
-        <img src="./assets/imgs/farol.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto texto texto</p>
-          <span>12 de junho</span>
-        </div>
-      </div>
-
-      <div class="polaroid polaroid_direita">
-        <img src="./assets/imgs/max_polaroids.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto texto texto</p>
-          <span>8 de junho</span>
-        </div>
-      </div>
-
-      <div class="polaroid polaroid_esquerda">
-        <img src="./assets/imgs/chloe_carro.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto texto</p>
-          <span>2 de junho</span>
-        </div>
-      </div>
-
-      <div class="polaroid">
-        <img src="./assets/imgs/farol.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto texto texto texto</p>
-          <span>28 de maio</span>
-        </div>
-      </div>
-
-      <div class="polaroid polaroid_direita">
-        <img src="./assets/imgs/max_polaroids.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto</p>
-          <span>20 de maio</span>
-        </div>
-      </div>
-
-      <div class="polaroid polaroid_esquerda">
-        <img src="./assets/imgs/chloe_carro.jpeg" alt="memória">
-        <div class="polaroid_legenda">
-          <p>texto texto texto texto texto texto texto</p>
-          <span>15 de maio</span>
-        </div>
       </div>
 
     </div>
-
-  </div>
 
 </body>
 
 </html>
+
+<script>
+
+  // colocando informações do usuário logado nos campos necessários
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nomeUsuario = sessionStorage.NOME_USUARIO;
+  var nicknameUsuario = sessionStorage.NICKNAME_USUARIO;
+  var fotoUsuario = sessionStorage.FOTO_USUARIO;
+
+  if (idUsuario == null || nomeUsuario == null) {
+    window.location = "./login.html";
+  }
+
+  document.getElementById("usuario_nome").innerHTML = nomeUsuario;
+  document.getElementById("usuario_nick").innerHTML = `@${nicknameUsuario}`;
+  document.getElementById("foto_perfil").src = `./assets/imgs/FotosPerfil/${fotoUsuario}`;
+
+
+
+  function carregarMeusPosts() {
+
+    fetch(`/postagens/memorias/${idUsuario}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (listaPosts) {
+
+            var quadro = document.getElementById("quadro");
+
+            quadro.innerHTML = "";
+ 
+            for (let index = 0; index < listaPosts.length; index++) {
+              let post = listaPosts[index];
+
+              let inclinacao = "";
+
+              if (index % 3 == 1) {
+                  inclinacao = "polaroid_direita";
+              } else if (index % 3 == 2) {
+                  inclinacao = "polaroid_esquerda";
+              }
+ 
+              let dataFormatada = new Date(post.dtPostagem).toLocaleString("pt-BR", {
+                day: "2-digit",
+                month: "long",
+                hour: "2-digit",
+                minute: "2-digit"
+              });
+ 
+              let fotoSrc = `./assets/imgs/FotosPerfil/${post.fotoPerfil}`;
+ 
+              let imgScr = "./assets/imgs/FotosPerfil/placeholder.jpg";
+              if (post.fotoPost != null) {
+                imgScr = `./assets/imgs/posts/${post.fotoPost}`;
+              }
+                quadro.innerHTML +=
+                  `<div class="polaroid ${inclinacao}">
+                    <img src="${imgScr}">
+                    <div class="polaroid_legenda">
+                      <p>${post.post}</p>
+                      <span>${dataFormatada}</span>
+                    </div>
+                  </div>`;
+            }
+          });
+ 
+        } 
+      })
+      .catch(function (erro) {
+        console.log("Erro ao carregar posts: ", erro);
+      });
+
+  }
+      carregarMeusPosts();
+
+</script>
