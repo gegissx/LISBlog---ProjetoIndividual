@@ -28,10 +28,10 @@
     </div>
 
     <div class="usuario_perfil">
-        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
+        <img class="foto_perfil" id="foto_perfil" src="" />
         <div class="usuario_info">
-          <span class="usuario_nome">${nome}</span>
-          <span class="usuario_nick">@${nickname}</span>
+          <span class="usuario_nome" id="usuario_nome"></span>
+          <span class="usuario_nick" id="usuario_nick"></span>
         </div>
       </div>
 
@@ -47,100 +47,151 @@
     </div>
 
     <div class="filtros">
-      <button class="botao_filtro botao_selecionado" onclick="filtrar()">Todos</button>
-      <button class="botao_filtro" onclick="filtrar()">Alegria</button>
-      <button class="botao_filtro" onclick="filtrar()">Alivio</button>
-      <button class="botao_filtro" onclick="filtrar()">Ansiedade</button>
-      <button class="botao_filtro" onclick="filtrar()">Culpa</button>
-      <button class="botao_filtro" onclick="filtrar()">Esperança</button>
-      <button class="botao_filtro" onclick="filtrar()">Medo</button>
-      <button class="botao_filtro" onclick="filtrar()">Paz</button>
-      <button class="botao_filtro" onclick="filtrar()">Raiva</button>
-      <button class="botao_filtro" onclick="filtrar()">Tristeza</button>
+      <button id="Todos" class="botao_filtro botao_selecionado" onclick="filtrar('Todos')">Todos</button>
+      <button id="Alegria" class="botao_filtro" onclick="filtrar('Alegria')">Alegria</button>
+      <button id="Alivio" class="botao_filtro" onclick="filtrar('Alivio')">Alivio</button>
+      <button id="Ansiedade" class="botao_filtro" onclick="filtrar('Ansiedade')">Ansiedade</button>
+      <button id="Culpa" class="botao_filtro" onclick="filtrar('Culpa')">Culpa</button>
+      <button id="Esperanca" class="botao_filtro" onclick="filtrar('Esperanca')">Esperança</button>
+      <button id="Medo" class="botao_filtro" onclick="filtrar('Medo')">Medo</button>
+      <button id="Paz" class="botao_filtro" onclick="filtrar('Paz')">Paz</button>
+      <button id="Raiva" class="botao_filtro" onclick="filtrar('Raiva')">Raiva</button>
+      <button id="Tristeza" class="botao_filtro" onclick="filtrar('Tristeza')">Tristeza</button>
     </div>
 
     <!-- Feed -->
 
-    <div class="feed">
-
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max1.jpg">
-          <div>
-            <h3>nome1</h3>
-            <span>dia, horario</span>
-          </div>
-        </div>
-          <span class="sentimento" >Sentimento</span>
-        </div>
-
-        <p>
-          texto texto texto texto texto texto texto texto texto texto
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/farol.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
+    <div class="feed" id="feed">      
         </div>
       </div>
-
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max2.jpg">
-          <div>
-            <h3>nome2</h3>
-            <span>dia, horario</span>
-          </div>
-        </div>
-          <span class="sentimento" >Sentimento</span>
-        </div>
-
-        <p>
-          texto texto texto texto texto texto texto texto texto texto
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/max_polaroids.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
-        </div>
-      </div>
-
-
-      <div class="post">
-        <div class="topo_post">
-        <div class="usuario">
-          <img src="./assets/imgs/FotosPerfil/Max3.jpg">
-          <div>
-            <h3>nome3</h3>
-            <span>dia, horario</span>
-          </div>
-        </div>
-        <span class="sentimento" >Sentimento</span>
-        </div>
-
-        <p>
-          texto texto texto texto texto texto texto texto texto texto
-        </p>
-
-        <img class="imagem_post" src="./assets/imgs/chloe_carro.jpeg">
-
-        <div class="interacao">
-          <button><span>♡ 12</span></button>
-          <button><span>💬 3</span></button>
-        </div>
-      </div>
-
-
-    </div>
-
-  </div>
-
 </body>
-
 </html>
+
+
+<script>
+
+  // colocando informações do usuário logado nos campos necessários
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nomeUsuario = sessionStorage.NOME_USUARIO;
+  var nicknameUsuario = sessionStorage.NICKNAME_USUARIO;
+  var fotoUsuario = sessionStorage.FOTO_USUARIO;
+
+  if (idUsuario == null || nomeUsuario == null) {
+    window.location = "./login.html";
+  }
+
+  document.getElementById("usuario_nome").innerHTML = nomeUsuario;
+  document.getElementById("usuario_nick").innerHTML = `@${nicknameUsuario}`;
+  document.getElementById("foto_perfil").src =
+    `./assets/imgs/FotosPerfil/${fotoUsuario}`;
+
+  function corSentimento(sentimento) {
+    if (sentimento == "Alegria") {
+        return "sentimento_alegria";
+    } else if (sentimento == "Alivio") {
+        return "sentimento_alivio";
+    } else if (sentimento == "Ansiedade") {
+        return "sentimento_ansiedade";
+    } else if (sentimento == "Culpa") {
+        return "sentimento_culpa";
+    } else if (sentimento == "Esperança") {
+        return "sentimento_esperanca";
+    } else if (sentimento == "Medo") {
+        return "sentimento_medo";
+    } else if (sentimento == "Paz") {
+        return "sentimento_paz";
+    } else if (sentimento == "Raiva") {
+        return "sentimento_raiva";
+    } else if (sentimento == "Tristeza") {
+        return "sentimento_tristeza";
+    } else {
+        return "sentimento";
+    }
+}
+
+
+  function carregarMeusPosts() {
+
+    fetch(`/postagens/listar/${idUsuario}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (listaPosts) {
+            var feed = document.getElementById("feed");
+
+            feed.innerHTML = "";
+ 
+            for (let index = 0; index < listaPosts.length; index++) {
+              let post = listaPosts[index];
+ 
+              let dataFormatada = new Date(post.dtPostagem).toLocaleString("pt-BR", {
+                day: "2-digit",
+                month: "long",
+                hour: "2-digit",
+                minute: "2-digit"
+              });
+ 
+              let fotoSrc = `./assets/imgs/FotosPerfil/${post.fotoPerfil}`;
+ 
+              let imgPost = "";
+              if (post.fotoPost != null) {
+                imgPost = `<img class="imagem_post" src="./assets/imgs/posts/${post.fotoPost}" style="display:block">`;
+              }
+ 
+              feed.innerHTML +=
+                `<div class="post" id="post_${post.idPostagem}" data-sentimento="${post.sentimento}">
+                  <div class="topo_post">
+                    <div class="usuario">
+                      <img src="${fotoSrc}">
+                      <div>
+                        <h3>${post.nome}</h3>
+                        <span>${dataFormatada}</span>
+                      </div>
+                    </div>
+                    <span class="sentimento ${corSentimento(post.sentimento)}">${post.sentimento}</span>
+                  </div>
+                  <p>${post.post}</p>
+                  ${imgPost}
+                </div>`;
+            }
+          });
+ 
+        } else if (resposta.status == 204) {
+          document.getElementById("feed").innerHTML = "<p>Você ainda não escreveu nenhum post!</p>";
+        }
+      })
+      .catch(function (erro) {
+        console.log("Erro ao carregar posts: ", erro);
+      });
+  }
+
+
+
+  // filtar postagem por sentimento
+
+let todosBotoes = ["Todos", "Alegria", "Alivio", 
+                   "Ansiedade", "Culpa", "Esperanca",
+                   "Medo", "Paz", "Raiva", "Tristeza"];
+
+function filtrar(sentimento) {
+
+    for (let i = 0; i < todosBotoes.length; i++) {
+        document.getElementById(todosBotoes[i]).classList.remove("botao_selecionado");
+    }
+
+    document.getElementById(sentimento).classList.add("botao_selecionado");
+
+    var posts = document.getElementById("feed").children;
+    for (let i = 0; i < posts.length; i++) {
+        if (sentimento == "Todos" || posts[i].dataset.sentimento == sentimento) {
+            posts[i].style.display = "block";
+        } else {
+            posts[i].style.display = "none";
+        }
+    }
+}
+
+carregarMeusPosts();
+
+
+</script>
+
