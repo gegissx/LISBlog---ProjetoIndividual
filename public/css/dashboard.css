@@ -122,7 +122,7 @@ body {
     flex-direction: row;
     margin-bottom: 25px;
     justify-self: start;
-    gap: 32px;
+    gap: 80px;
     align-items: end;
 }
 
@@ -135,7 +135,7 @@ body {
     flex-direction: row;
     gap: 40px;
     height: 150px;
-    width: 280px;
+    width: 350px;
 }
 
 .kpi h3 {

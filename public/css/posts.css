@@ -302,6 +302,7 @@ body {
 .post p {
   font-size: 28px;
   margin-bottom: 10px;
+  word-break: break-all;
 }
 
 .imagem_post {
@@ -352,25 +353,25 @@ body {
   color: #7a4000;
 }
 .sentimento_culpa {
-  background-color: #d4c4e8;
-  color: #4a2d6e;
+  background-color: #34311467;
+  color: #343114;
 }
 .sentimento_esperanca {
-  background-color: #b8e8ff;
-  color: #1a5f7a;
+  background-color: #1a7a4c96;
+  color: #153827;
 }
 .sentimento_medo {
-  background-color: #c8c8c8;
-  color: #333333;
+  background-color: #865ebd3d;
+  color: #865ebd;
 }
 .sentimento_paz {
-  background-color: #d4f0e8;
-  color: #1a6e4a;
+  background-color: #ffffff;
+  color: #214e3a;
 }
 .sentimento_raiva {
   background-color: #ffb3b3;
   color: #7a0000;
-}
+} 
 .sentimento_tristeza {
   background-color: #b3c8e8;
   color: #1a3a6e;

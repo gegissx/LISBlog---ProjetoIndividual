@@ -16,12 +16,10 @@
   </head>
 
   <body>
-
     <!-- NavBar-->
     <nav class="navBar">
- 
       <img class="logo" src="./assets/imgs/Logo.png" alt="LisBlog" />
- 
+
       <div class="menu">
         <a href="./posts.html">⌂ Feed</a>
         <a href="./meus_posts.html">🖹 Meus posts</a>
@@ -29,52 +27,35 @@
         <a href="./dashboard.html">✎ Resumo</a>
         <a href="./index.html">➜] Sair</a>
       </div>
-      
+
       <div class="usuario_perfil">
-        <img class="foto_perfil" src="./assets/imgs/FotosPerfil/Max1.jpg" alt="foto de perfil" />
+        <img class="foto_perfil" id="foto_perfil" src="" />
         <div class="usuario_info">
-          <span class="usuario_nome">${nome}</span>
-          <span class="usuario_nick">@${nickname}</span>
+          <span class="usuario_nome" id="usuario_nome"></span>
+          <span class="usuario_nick" id="usuario_nick"></span>
         </div>
       </div>
- 
     </nav>
 
     <div class="topo">
+      <div class="titulo">
+        <h1>Essa é sua Dashboard, <span id="usuarion_nome2"></span></h1>
+        <h3>Aqui está um resumo da sua história até agora!</h3>
+      </div>
 
-    <div class="titulo">
-      <h1>Essa é sua Dashboard,</h1>
-      <h3>Aqui está um resumo da sua história até agora!</h3>
+      <img src="./assets/imgs/desenhoFarol.png" />
     </div>
 
-    <img src="./assets/imgs/desenhoFarol.png">
-
-    </div>
-
-  
     <div class="container">
-
       <!-- KPIS -->
       <div class="kpis">
-
         <div class="kpi">
           <img src="./assets/imgs/dashLapis.png" />
           <div>
             <h3>Posts Publicados</h3>
             <div class="info">
-              <span>24</span>
+              <span id="kpi_posts"></span>
               <p class="cor1">capítulos</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="kpi">
-          <img src="./assets/imgs/dashBalao.png" />
-          <div>
-            <h3>Comentários recebidos</h3>
-            <div class="info">
-              <span>56</span>
-              <p class="cor2">comentários</p>
             </div>
           </div>
         </div>
@@ -84,7 +65,7 @@
           <div>
             <h3>Curtidas recebidas</h3>
             <div class="info">
-              <span>103</span>
+              <span id="kpi_curtidas"></span>
               <p class="cor3">curtidas</p>
             </div>
           </div>
@@ -95,7 +76,7 @@
           <div>
             <h3>Memórias salvas</h3>
             <div class="info">
-              <span>8</span>
+              <span id="kpi_memorias"></span>
               <p class="cor4">memórias</p>
             </div>
           </div>
@@ -109,40 +90,23 @@
           <div class="configGrafico1">
             <canvas id="graficoLinha"></canvas>
           </div>
-          
         </div>
 
         <div class="grafico2">
           <h2>Emoções mais frequentes</h2>
           <canvas id="graficoPizza"></canvas>
         </div>
-
-        <!--<div class="grafico3">
-          <h2>Meta de escrita</h2>
-          <canvas id=""></canvas>
-        </div> -->
-        
       </div>
     </div>
   </body>
+</html>
 
-  <script>
-    // GRÁFICO DA LINHA DO TEMPO
-
-    const labels = [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-    ];
-
-    const Grafico_LinhaDoTempo = {
-      labels: labels,
+<script>
+  // GRÁFICO DA LINHA DO TEMPO
+  const LinhaDoTempo = new Chart(document.getElementById("graficoLinha"), {
+    type: "line",
+    data: {
+      labels: [],
       datasets: [
         {
           fill: true,
@@ -150,135 +114,105 @@
           backgroundColor: "rgba(163, 177, 255, 0.208)",
           pointBackgroundColor: "rgb(163, 177, 255)",
           borderColor: "rgb(163, 177, 255)",
-          data: [22, 24, 27, 23, 20, 18, 22, 24, 27, 23, 20, 18],
+          data: [],
           borderWidth: 1,
         },
       ],
-    };
-
-
-    const config = {
-  type: 'line',
-  data: Grafico_LinhaDoTempo,
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      }
     },
-    scales: {
-      x: {
-        grid: {
-          display: false 
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { maxRotation: 0 },
         },
-        ticks: {
-          maxRotation: 0,
-          autoSkip: false,
-        }
-      },
-      y: {
-        grid: {
-          drawTicks: false
-        },
-      }
-    },
-    elements: {
-      point: {
-        radius: 2.5,
-      }
-    }
-  }
-};
-  </script>
-
-
-
-  <script>
-    // GRÁFICO DA FREQUÊNCIA DE EMOÇÕES
-
-    const valores = [30, 60, 28, 25, 22, 23, 40];
-
-    const labels2 = [
-      "Ansiedade",
-      "Tristeza",
-      "Raiva",
-      "Alegria",
-      "Saudade",
-      "Gratidão",
-      "Esperança",
-    ];
-
-    // Colocando porcentagem na legenda
-
-    let soma = 0;
-
-    for (let index = 0; index < valores.length; index++) {
-      soma += valores[index];
-    }
-
-    let labels_legenda = [];
-
-    for (let index = 0; index < labels2.length; index++) {
-      let porcentagem = ((valores[index] / soma) * 100).toFixed(1);
-
-      labels_legenda.push(labels2[index] + " - " + porcentagem + "%");
-    }
-
-    const grafico_Frequencia = {
-      labels: labels_legenda,
-      datasets: [
-        {
-          label: "Sentimentos",
-          backgroundColor: [
-            "rgb(214, 168, 106)",
-            "rgb(123, 145, 196)",
-            "rgb(196, 112, 112)",
-            "rgb(230, 210, 120)",
-            "rgb(186, 201, 250)",
-            "rgb(156, 170, 108)",
-            "rgb(121, 179, 140)",
-          ],
-          data: [30, 60, 28, 25, 22, 23, 40],
-          borderWidth: 1,
-        },
-      ],
-    };
-    const config2 = {
-      type: "doughnut",
-      data: grafico_Frequencia,
-
-      options: {
-        cutout: "50%",
-
-        plugins: {
-          legend: {
-            position: "right",
-            labels: {
-              usePointStyle: true,
-              pointStyle: "circle",
-              padding: 20,
-            },
+        y: {
+          grid: { drawTicks: false },
+          ticks: {
+            stepSize: 1,
           },
         },
       },
-    };
-  </script>
+      elements: { point: { radius: 2.5 } },
+    },
+  });
 
+  // GRÁFICO DE EMOÇÕES
+  const Frequencia = new Chart(document.getElementById("graficoPizza"), {
+    type: "doughnut",
+    data: {
+      labels: [],
+      datasets: [
+        {
+          label: "Sentimentos",
+          backgroundColor: [],
+          data: [],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      cutout: "50%",
+      plugins: {
+        legend: {
+          position: "right",
+          labels: { usePointStyle: true, pointStyle: "circle", padding: 20 },
+        },
+      },
+    },
+  });
 
+  // colocando informações do usuário logado nos campos necessários
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var nomeUsuario = sessionStorage.NOME_USUARIO;
+  var nicknameUsuario = sessionStorage.NICKNAME_USUARIO;
+  var fotoUsuario = sessionStorage.FOTO_USUARIO;
 
-  <script>
-    // CRIAÇÃO DOS GRÁFICOS
+  if (idUsuario == null || nomeUsuario == null) {
+    window.location = "./login.html";
+  }
 
-    const LinhaDoTempo = new Chart(
-      document.getElementById("graficoLinha"),
-      config,
-    );
+  document.getElementById("usuario_nome").innerHTML = nomeUsuario;
+  document.getElementById("usuario_nick").innerHTML = `@${nicknameUsuario}`;
+  document.getElementById("foto_perfil").src =
+    `./assets/imgs/FotosPerfil/${fotoUsuario}`;
 
-    const Frequencia = new Chart(
-      document.getElementById("graficoPizza"),
-      config2,
-    );
-  </script>
-</html>
+  document.getElementById("usuarion_nome2").innerHTML = nomeUsuario;
+
+  // carregar dados da dashboard
+
+  let sentimentos = [
+    { nome: "Alegria", contagem: 0, cor: "#f7e98e" },
+    { nome: "Alivio", contagem: 0, cor: "#c8f0c8" },
+    { nome: "Ansiedade", contagem: 0, cor: "#ffd6a5" },
+    { nome: "Culpa", contagem: 0, cor: "#34311467" },
+    { nome: "Esperanca", contagem: 0, cor: "#1a7a4c96" },
+    { nome: "Medo", contagem: 0, cor: "#865ebd3d" },
+    { nome: "Paz", contagem: 0, cor: "#ffffff" },
+    { nome: "Raiva", contagem: 0, cor: "#ffb3b3" },
+    { nome: "Tristeza", contagem: 0, cor: "#b3c8e8" },
+  ];
+
+  fetch(`/postagens/listar/${idUsuario}`).then(function (resposta) {
+    if (resposta.ok) {
+      resposta.json().then(function (listaPosts) {
+        // KPIS
+        let totalCurtidas = 0;
+        let totalMemorias = 0;
+
+        for (let index = 0; index < listaPosts.length; index++) {
+          totalCurtidas += listaPosts[index].totalCurtidas;
+          if (listaPosts[index].importante == 1) {
+            totalMemorias++;
+          }
+        }
+
+        kpi_posts.innerHTML = listaPosts.length;
+        kpi_curtidas.innerHTML = totalCurtidas;
+        kpi_memorias.innerHTML = totalMemorias;
+      });
+    }
+  });
+</script>
