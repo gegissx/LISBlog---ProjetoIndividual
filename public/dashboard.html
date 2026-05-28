@@ -102,8 +102,10 @@
 </html>
 
 <script>
+
   // GRÁFICO DA LINHA DO TEMPO
-  const LinhaDoTempo = new Chart(document.getElementById("graficoLinha"), {
+  const LinhaDoTempo = new Chart(
+    document.getElementById("graficoLinha"), {
     type: "line",
     data: {
       labels: [],
@@ -128,19 +130,17 @@
           grid: { display: false },
           ticks: { maxRotation: 0 },
         },
-        y: {
-          grid: { drawTicks: false },
-          ticks: {
-            stepSize: 1,
-          },
-        },
+        y: { grid: { drawTicks: false },
+        ticks: {
+          stepSize: 1,
+        } },
       },
       elements: { point: { radius: 2.5 } },
     },
   });
 
   // GRÁFICO DE EMOÇÕES
-  const Frequencia = new Chart(document.getElementById("graficoPizza"), {
+    const Frequencia = new Chart(document.getElementById("graficoPizza"), {
     type: "doughnut",
     data: {
       labels: [],
@@ -163,6 +163,7 @@
       },
     },
   });
+  
 
   // colocando informações do usuário logado nos campos necessários
   var idUsuario = sessionStorage.ID_USUARIO;
@@ -181,38 +182,100 @@
 
   document.getElementById("usuarion_nome2").innerHTML = nomeUsuario;
 
+
   // carregar dados da dashboard
-
-  let sentimentos = [
-    { nome: "Alegria", contagem: 0, cor: "#f7e98e" },
-    { nome: "Alivio", contagem: 0, cor: "#c8f0c8" },
+   let sentimentos = [
+    { nome: "Alegria",   contagem: 0, cor: "#f7e98e" },
+    { nome: "Alivio",    contagem: 0, cor: "#c8f0c8" },
     { nome: "Ansiedade", contagem: 0, cor: "#ffd6a5" },
-    { nome: "Culpa", contagem: 0, cor: "#34311467" },
+    { nome: "Culpa",     contagem: 0, cor: "#34311467" },
     { nome: "Esperanca", contagem: 0, cor: "#1a7a4c96" },
-    { nome: "Medo", contagem: 0, cor: "#865ebd3d" },
-    { nome: "Paz", contagem: 0, cor: "#ffffff" },
-    { nome: "Raiva", contagem: 0, cor: "#ffb3b3" },
-    { nome: "Tristeza", contagem: 0, cor: "#b3c8e8" },
+    { nome: "Medo",      contagem: 0, cor: "#865ebd3d" },
+    { nome: "Paz",       contagem: 0, cor: "#ffffff" },
+    { nome: "Raiva",     contagem: 0, cor: "#ffb3b3" },
+    { nome: "Tristeza",  contagem: 0, cor: "#b3c8e8" }
   ];
-
-  fetch(`/postagens/listar/${idUsuario}`).then(function (resposta) {
-    if (resposta.ok) {
-      resposta.json().then(function (listaPosts) {
-        // KPIS
-        let totalCurtidas = 0;
-        let totalMemorias = 0;
-
-        for (let index = 0; index < listaPosts.length; index++) {
-          totalCurtidas += listaPosts[index].totalCurtidas;
-          if (listaPosts[index].importante == 1) {
-            totalMemorias++;
+ 
+  fetch(`/postagens/listar/${idUsuario}`)
+    .then(function (resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function (listaPosts) {
+ 
+          // KPIS
+          let totalCurtidas = 0;
+          let totalMemorias = 0;
+ 
+          for (let index = 0; index < listaPosts.length; index++) {
+            totalCurtidas += listaPosts[index].totalCurtidas;
+            if (listaPosts[index].importante == 1) {
+              totalMemorias++;
+            }
           }
-        }
+ 
+          kpi_posts.innerHTML = listaPosts.length;
+          kpi_curtidas.innerHTML = totalCurtidas;
+          kpi_memorias.innerHTML = totalMemorias;
+ 
 
-        kpi_posts.innerHTML = listaPosts.length;
-        kpi_curtidas.innerHTML = totalCurtidas;
-        kpi_memorias.innerHTML = totalMemorias;
-      });
-    }
-  });
+          // Gráfico de emoções
+          for (let index = 0; index < listaPosts.length; index++) {
+            for (let i = 0; i < sentimentos.length; i++) {
+              if (listaPosts[index].sentimento == sentimentos[i].nome) {
+                sentimentos[i].contagem++;
+              }
+            }
+          }
+ 
+          let somaTotal = 0;
+          for (let i = 0; i < sentimentos.length; i++) {
+            somaTotal += sentimentos[i].contagem;
+          }
+ 
+          let labelsLegenda = [];
+          let dadosGrafico = [];
+          let coresGrafico = [];
+ 
+          for (let index = 0; index < sentimentos.length; index++) {
+            let porcentagem = 0;
+            if (somaTotal > 0) {
+              porcentagem = ((sentimentos[index].contagem / somaTotal) * 100).toFixed(1);
+            }
+            labelsLegenda.push(sentimentos[index].nome + " - " + porcentagem + "%");
+            dadosGrafico.push(sentimentos[index].contagem);
+            coresGrafico.push(sentimentos[index].cor);
+          }
+ 
+          Frequencia.data.labels = labelsLegenda;
+          Frequencia.data.datasets[0].data = dadosGrafico;
+          Frequencia.data.datasets[0].backgroundColor = coresGrafico;
+          Frequencia.update();
+ 
+          // Gráfico de linha — últimos 7 dias
+          let hoje = new Date();
+          let diasLabels = [];
+          let diasContagem = [0, 0, 0, 0, 0, 0, 0];
+ 
+          for (let i = 0; i < 7; i++) {
+            let dia = new Date(hoje);
+            dia.setDate(hoje.getDate() - (6 - i));
+            diasLabels.push(dia.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }));
+ 
+            for (let j = 0; j < listaPosts.length; j++) {
+              if (new Date(listaPosts[j].dtPostagem).toDateString() == dia.toDateString()) {
+                diasContagem[i]++;
+              }
+            }
+          }
+ 
+          LinhaDoTempo.data.labels = diasLabels;
+          LinhaDoTempo.data.datasets[0].data = diasContagem;
+          LinhaDoTempo.update();
+ 
+        });
+      }
+    })
+    .catch(function (erro) {
+      console.log("Erro ao carregar dashboard: ", erro);
+    });
+ 
 </script>
