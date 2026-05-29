@@ -79,6 +79,7 @@
 
 <script>
 
+
   // colocando informações do usuário logado nos campos necessários
   var idUsuario = sessionStorage.ID_USUARIO;
   var nomeUsuario = sessionStorage.NOME_USUARIO;
@@ -120,7 +121,6 @@
 
 
   function carregarMeusPosts() {
-
     fetch(`/postagens/listar/${idUsuario}`)
       .then(function (resposta) {
         if (resposta.ok) {
@@ -160,6 +160,7 @@
                   </div>
                   <p>${post.post}</p>
                   ${imgPost}
+                  <div class="deletar" onclick="deletar(${post.idPostagem})">🗑</div>
                 </div>`;
             }
           });
@@ -172,7 +173,6 @@
         console.log("Erro ao carregar posts: ", erro);
       });
   }
-
 
 
   // filtar postagem por sentimento
@@ -199,7 +199,37 @@ function filtrar(sentimento) {
     }
 }
 
-carregarMeusPosts();
+function deletar(idPostagem){
+  let consequencia = prompt(`Você tem certeza? lembre-se, essa ação tera consequências...`).toLowerCase()
+
+  if(consequencia == 'nao' || consequencia == 'não'){
+    console.log('respondeu nao')
+  } else if(consequencia == 'sim') {
+    console.log('respondeu sim')
+    console.log("Criar função de apagar post escolhido - ID" + idPostagem);
+    fetch(`/postagens/deletar/${idPostagem}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                carregarMeusPosts();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+  }
+
+  carregarMeusPosts();
+
 
 
 </script>

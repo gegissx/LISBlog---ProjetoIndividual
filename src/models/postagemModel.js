@@ -47,9 +47,18 @@ function publicar(post, foto, importante, sentimento, idUsuario) {
 // }
 
 function deletar(idPostagem) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idAviso);
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idPostagem);
     var instrucaoSql = `
         DELETE FROM postagem WHERE idPostagem = ${idPostagem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function deletarCurtidas(idPostagem) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idPostagem);
+    var instrucaoSql = `
+        DELETE FROM curtidas WHERE fkPostagem = ${idPostagem};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -97,6 +106,7 @@ module.exports = {
     listarPorUsuario,
     listarMemorias,
     publicar,
+    deletarCurtidas,
     deletar,
     curtir,
     descurtir,

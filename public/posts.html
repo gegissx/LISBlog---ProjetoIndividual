@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <!-- FEED -->
+      <!-- Feed -->
 
       <div class="feed" id="feed"></div>
     </div>
@@ -143,12 +143,12 @@
 }
 
   function carregarFeed() {
+    feed.innerHTML = "";
+
     fetch("/postagens/listar")
       .then(function (resposta) {
         if (resposta.ok) {
           resposta.json().then(function (listaPosts) {
-            var feed = document.getElementById("feed");
-            feed.innerHTML = "";
 
             for (let index = 0; index < listaPosts.length; index++) {
               let post = listaPosts[index];
@@ -185,7 +185,7 @@
 
                   <div class="interacao">
                     <button id="curtir_${post.idPostagem}" onclick="curtir(${post.idPostagem})">
-                      <span id="coracao_${post.idPostagem}">🩶</span>
+                      <span id="coracao_${post.idPostagem}">🩶</span> <span id="qtdCoracao_${post.idPostagem}">${post.totalCurtidas}</span>
                     </button>
                   </div>
                 </div>`;
@@ -211,14 +211,10 @@
         .then(function (resposta) {
           if (resposta.ok) {
             resposta.json().then(function (resultado) {
+
               if (resultado.curtido == true) {
-                document
-                  .getElementById(`coracao_${resultado.idPostagem}`)
-                  .classList.add("curtido");
-                document.getElementById(
-                  `coracao_${resultado.idPostagem}`,
-                ).innerHTML = "💙";
-              }
+                document.getElementById(`coracao_${resultado.idPostagem}`).innerHTML = "💙";
+              }   
             });
           }
         })
@@ -237,15 +233,19 @@
       .then(function (resposta) {
         if (resposta.ok) {
           resposta.json().then(function (resultado) {
-            var coracao = document.getElementById(`coracao_${idPostagem}`);
+            let coracao = document.getElementById(`coracao_${idPostagem}`);
+            let contadorCoracao = document.getElementById(`qtdCoracao_${idPostagem}`);
+            let TotalCurtidas = Number(contadorCoracao.innerHTML);
 
             if (resultado.curtido == true) {
-              coracao.classList.add("curtido");
               coracao.innerHTML = "💙";
+              TotalCurtidas ++;
             } else {
-              coracao.classList.remove("curtido");
               coracao.innerHTML = "🩶";
+              TotalCurtidas --;
             }
+
+            contadorCoracao.innerHTML = TotalCurtidas;
           });
         }
       })
@@ -255,7 +255,7 @@
   }
 
   // postar
-
+  
   function enviar() {
     let post = texto_postagem.value;
     let selectSentimento = document.getElementById("sentimentos");

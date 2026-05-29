@@ -116,9 +116,13 @@ function publicar(req, res) {
 // }
 
 function deletar(req, res) {
-    var idpostagem = req.params.idpostagem;
+    var idPostagem = req.params.idPostagem;
 
-    postagemModel.deletar(idpostagem)
+    postagemModel.deletarCurtidas(idPostagem)
+        .then(
+            function() {
+                return postagemModel.deletar(idPostagem)
+            })
         .then(
             function (resultado) {
                 res.json(resultado);

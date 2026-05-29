@@ -256,3 +256,11 @@ body {
   background-color: #b3c8e8;
   color: #1a3a6e;
 }
+
+.deletar {
+  font-size: 25px;
+  display: flex;
+  justify-self: end;
+  cursor: pointer;
+  width: 20px;
+}
