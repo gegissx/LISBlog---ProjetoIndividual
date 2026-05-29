@@ -168,7 +168,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 50px;
+  gap: 100px;
   padding: 80px 190px;
   background-color: #ede7db;
 }
@@ -180,19 +180,31 @@ header {
   justify-content: start;
   align-items: start;
   gap: 15px;
-  margin-top: -250px;
+  margin-top: -30px;
+  margin-left: 80px;
 }
 
 .exemplo_texto h1 {
-  font-size: 50px;
+  font-size: 55px;
 }
 
 .exemplo_texto p {
-  font-size: 22px;
+  font-size: 25px;
   color: #5c4a3d;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 500px;
   line-height: 1.5;
+}
+
+.seta {
+  display: flex;
+  justify-content: center;
+}
+
+.seta img {
+  width: 250px;
+  margin-left: 300px;
+  margin-top: -20px;
+  transform: rotate(-20deg);
 }
 
 .exemplo_post {
@@ -214,6 +226,7 @@ header {
   padding: 90px 190px;
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 
 .final_container {

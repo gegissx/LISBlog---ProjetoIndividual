@@ -55,6 +55,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  
 }
  
 .foto_perfil {
@@ -73,11 +74,13 @@ body {
  
 .usuario_nome {
   font-size: 18px;
+  font-weight: bold;
   color: #331100;
 }
  
 .usuario_nick {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
   color: #8c8178;
 }
 
@@ -87,7 +90,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 70px 80px 0px 153px;
+    padding: 70px 95px 0px 153px;
     margin-left: 230px;
 }
 
