@@ -15,7 +15,6 @@ Desenvolver uma plataforma semelhante a um blog que permita o registro e a refle
 - Página home;
 - Cadastro e Login;
 - Publicação de posts;
-- Interação entre usuários através de comentários;
-- Dashbard com resumo de interações e sentimentos mensais.
+- Dashbard com resumo de interações e sentimentos.
 
 
