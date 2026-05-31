@@ -26,7 +26,6 @@
             <img class="logo" src="./assets/imgs/Logo.png" />
             <div class="menu">
               <a href="./index.html">Home</a>
-              <a href="./sobre.html">Sobre</a>
             </div>
           </nav>
         </header>
@@ -185,6 +184,8 @@ function selecionarFoto(idFoto) {
     document.getElementById("texto_foto").innerHTML = `${idFoto} ✓`;
 
     fotoSelecionada = `${idFoto}.jpg`;
+
+    fecharSelecao();
 }
 
 

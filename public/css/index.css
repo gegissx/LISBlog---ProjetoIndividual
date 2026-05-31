@@ -26,11 +26,6 @@ header {
   height: 40px;
 }
 
-.menu {
-  display: flex;
-  gap: 25px;
-}
-
 .menu a {
  text-decoration: none;
   color: #331100;
